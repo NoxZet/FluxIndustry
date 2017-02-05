@@ -1,0 +1,23 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "fluxindustry:item",
+		"textures": {
+			"item": "fluxindustry:items/rubbertree_sap"
+		}
+	},
+    "variants": {
+        "variant": {
+			"rubbertree_sap": {
+				"textures": {
+					"item": "fluxindustry:items/rubbertree_sap"
+				}
+			},
+			"rubber_plate": {
+				"textures": {
+					"item": "fluxindustry:items/rubber_plate"
+				}
+			}
+		}
+    }
+}

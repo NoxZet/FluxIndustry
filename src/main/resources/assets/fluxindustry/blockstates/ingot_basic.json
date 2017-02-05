@@ -1,0 +1,48 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "fluxindustry:item",
+		"textures": {
+			"item": "fluxindustry:items/ingot_copper"
+		}
+	},
+    "variants": {
+        "variant": {
+			"copper": {
+				"textures": {
+					"item": "fluxindustry:items/ingot_copper"
+				}
+			},
+			"tin": {
+				"textures": {
+					"item": "fluxindustry:items/ingot_tin"
+				}
+			},
+			"zinc": {
+				"textures": {
+					"item": "fluxindustry:items/ingot_zinc"
+				}
+			},
+			"aluminum": {
+				"textures": {
+					"item": "fluxindustry:items/ingot_aluminum"
+				}
+			},
+			"lead": {
+				"textures": {
+					"item": "fluxindustry:items/ingot_lead"
+				}
+			},
+			"bronze": {
+				"textures": {
+					"item": "fluxindustry:items/ingot_bronze"
+				}
+			},
+			"brass": {
+				"textures": {
+					"item": "fluxindustry:items/ingot_brass"
+				}
+			}
+		}		
+    }
+}
