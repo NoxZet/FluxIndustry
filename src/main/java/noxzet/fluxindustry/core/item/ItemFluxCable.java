@@ -12,6 +12,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,10 +25,47 @@ import noxzet.fluxindustry.core.tileentity.TileFluxCable;
 
 public class ItemFluxCable extends ItemFlux {
 
+	public NBTTagCompound[] itemTag = new NBTTagCompound[6];
+	public NBTTagCompound[] itemCableTag = new NBTTagCompound[6];
 	public ItemFluxCable(String unlocalizedName)
 	{
 		super(unlocalizedName);
 		super.setHasSubtypes(true);
+		for(int i = 0; i < itemTag.length; i++)
+		{
+			itemTag[i] = new NBTTagCompound();
+			itemCableTag[i] = new NBTTagCompound();
+		}
+		// Copper wire
+		itemCableTag[0].setLong("TeslaCapacity", 80);
+		itemCableTag[0].setLong("TeslaMinPower", 20);
+		itemCableTag[0].setFloat("TeslaLoss", 0.5F);		
+		itemTag[0].setTag("teslaCable", itemCableTag[0]);
+		// Tin wire
+		itemCableTag[1].setLong("TeslaCapacity", 20);
+		itemCableTag[1].setLong("TeslaMinPower", 8);
+		itemCableTag[1].setFloat("TeslaLoss", 0.1F);
+		itemTag[1].setTag("teslaCable", itemCableTag[1]);
+		// Aluminum wire
+		itemCableTag[2].setLong("TeslaCapacity", 160);
+		itemCableTag[2].setLong("TeslaMinPower", 60);
+		itemCableTag[2].setFloat("TeslaLoss", 0.7F);
+		itemTag[2].setTag("teslaCable", itemCableTag[2]);
+		// Bronze wire
+		itemCableTag[3].setLong("TeslaCapacity", 320);
+		itemCableTag[3].setLong("TeslaMinPower", 80);
+		itemCableTag[3].setFloat("TeslaLoss", 0.9F);
+		itemTag[3].setTag("teslaCable", itemCableTag[3]);
+		// Iron wire
+		itemCableTag[4].setLong("TeslaCapacity", 640);
+		itemCableTag[4].setLong("TeslaMinPower", 240);
+		itemCableTag[4].setFloat("TeslaLoss", 2.5F);
+		itemTag[4].setTag("teslaCable", itemCableTag[4]);
+		// Iron wire
+		itemCableTag[5].setLong("TeslaCapacity", 1280);
+		itemCableTag[5].setLong("TeslaMinPower", 320);
+		itemCableTag[5].setFloat("TeslaLoss", 2.1F);
+		itemTag[5].setTag("teslaCable", itemCableTag[5]);
 	}
 	
 	@Override
@@ -41,9 +79,14 @@ public class ItemFluxCable extends ItemFlux {
 	@Override
     public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems)
     {
+		ItemStack currentCable;
 		int i, len = CableVariant.values().length;
 		for(i = 0; i < len; i++)
-			subItems.add(new ItemStack(item, 1, i));
+		{
+			currentCable = new ItemStack(item, 1, i);
+			currentCable.setTagCompound(itemTag[i]);
+			subItems.add(currentCable);
+		}
     }
 	
 	@Override
@@ -57,10 +100,19 @@ public class ItemFluxCable extends ItemFlux {
 	
 	@Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack itemstack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
     {
-		tooltip.add("% T/t");
-		tooltip.add("Loss: ");
+		NBTTagCompound itemTag = itemstack.getTagCompound();
+		if (itemTag != null && itemTag.hasKey("teslaCable", NBT.TAG_COMPOUND))
+		{
+			NBTTagCompound itemCableTag = itemTag.getCompoundTag("teslaCable");
+			if (itemCableTag.hasKey("TeslaCapacity", NBT.TAG_LONG))
+				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.max") + " " + itemCableTag.getLong("TeslaCapacity") + " T/t");
+			if (itemCableTag.hasKey("TeslaMinPower", NBT.TAG_LONG))
+				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.min") + " " + itemCableTag.getLong("TeslaMinPower") + " T/t");
+			if (itemCableTag.hasKey("TeslaLoss", NBT.TAG_FLOAT))
+				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.loss") + " " + itemCableTag.getFloat("TeslaLoss") + " T/m");
+		}
     }
 	
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)

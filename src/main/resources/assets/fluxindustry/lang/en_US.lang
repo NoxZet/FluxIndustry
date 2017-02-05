@@ -70,3 +70,7 @@ item.fluxindustry.cable_aluminum.name=Aluminum Cable
 item.fluxindustry.cable_bronze.name=Bronze Cable
 item.fluxindustry.cable_iron.name=Iron Cable
 item.fluxindustry.cable_gold.name=Gold Cable
+
+item.fluxindustry.tip.max=Max:
+item.fluxindustry.tip.min=Min:
+item.fluxindustry.tip.loss=Loss:
