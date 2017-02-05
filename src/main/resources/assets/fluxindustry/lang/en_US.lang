@@ -1,0 +1,72 @@
+itemGroup.fluxindustry.blocks=Flux Industry: Blocks
+itemGroup.fluxindustry.machines=Flux Industry: Machines
+itemGroup.fluxindustry.materials=Flux Industry: Materials
+
+tile.fluxindustry.generator_coal.name=Coal Generator
+
+tile.fluxindustry.electric_furnace.name=Electric Furnace
+tile.fluxindustry.electric_crusher.name=Crusher
+
+tile.fluxindustry.ore_copper.name=Copper Ore
+tile.fluxindustry.ore_tin.name=Tin Ore
+tile.fluxindustry.ore_zinc.name=Zinc Ore
+tile.fluxindustry.ore_aluminum.name=Aluminum Ore
+tile.fluxindustry.ore_lead.name=Lead Ore
+tile.fluxindustry.ore_uranium.name=Uranium Ore
+
+tile.fluxindustry.block_copper.name=Copper Block
+tile.fluxindustry.block_tin.name=Tin Block
+tile.fluxindustry.block_zinc.name=Zinc Block
+tile.fluxindustry.block_aluminum.name=Aluminum Block
+tile.fluxindustry.block_lead.name=Lead Block
+tile.fluxindustry.block_bronze.name=Bronze Block
+tile.fluxindustry.block_brass.name=Brass Block
+tile.fluxindustry.block_machine.name=Machine Block
+
+item.fluxindustry.ingot_copper.name=Copper Ingot
+item.fluxindustry.ingot_tin.name=Tin Ingot
+item.fluxindustry.ingot_zinc.name=Zinc Ingot
+item.fluxindustry.ingot_aluminum.name=Aluminum Ingot
+item.fluxindustry.ingot_lead.name=Lead Ingot
+item.fluxindustry.ingot_bronze.name=Bronze Ingot
+item.fluxindustry.ingot_brass.name=Brass Ingot
+
+item.fluxindustry.nugget_copper.name=Copper Nugget
+item.fluxindustry.nugget_tin.name=Tin Nugget
+item.fluxindustry.nugget_zinc.name=Zinc Nugget
+item.fluxindustry.nugget_aluminum.name=Aluminum Nugget
+item.fluxindustry.nugget_lead.name=Lead Nugget
+item.fluxindustry.nugget_bronze.name=Bronze Nugget
+item.fluxindustry.nugget_brass.name=Brass Nugget
+
+item.fluxindustry.powder_copper.name=Copper Powder
+item.fluxindustry.powder_tin.name=Tin Powder
+item.fluxindustry.powder_zinc.name=Zinc Powder
+item.fluxindustry.powder_aluminum.name=Aluminum Powder
+item.fluxindustry.powder_lead.name=Lead Powder
+item.fluxindustry.powder_bronze.name=Bronze Powder
+item.fluxindustry.powder_brass.name=Brass Powder
+item.fluxindustry.powder_uranium.name=Uranium Powder
+item.fluxindustry.powder_iron.name=Iron Powder
+item.fluxindustry.powder_gold.name=Gold Powder
+item.fluxindustry.powder_granite.name=Granite Powder
+item.fluxindustry.powder_diorite.name=Diorite Powder
+item.fluxindustry.powder_andesite.name=Andesite Powder
+
+item.fluxindustry.treetap.name=Treetap
+item.fluxindustry.rubbertree_sap.name=Rubbertree Sap
+item.fluxindustry.rubber_plate.name=Rubber
+
+item.fluxindustry.cable_uninsulated_copper.name=Uninsulated Copper Cable
+item.fluxindustry.cable_uninsulated_tin.name=Uninsulated Tin Cable
+item.fluxindustry.cable_uninsulated_aluminum.name=Uninsulated Aluminum Cable
+item.fluxindustry.cable_uninsulated_bronze.name=Uninsulated Bronze Cable
+item.fluxindustry.cable_uninsulated_iron.name=Uninsulated Iron Cable
+item.fluxindustry.cable_uninsulated_gold.name=Uninsulated Gold Cable
+
+item.fluxindustry.cable_copper.name=Copper Cable
+item.fluxindustry.cable_tin.name=Tin Cable
+item.fluxindustry.cable_aluminum.name=Aluminum Cable
+item.fluxindustry.cable_bronze.name=Bronze Cable
+item.fluxindustry.cable_iron.name=Iron Cable
+item.fluxindustry.cable_gold.name=Gold Cable

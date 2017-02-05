@@ -1,0 +1,43 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "fluxindustry:item",
+		"textures": {
+			"item": "fluxindustry:items/cable_uninsulated_copper"
+		}
+	},
+    "variants": {
+        "variant": {
+			"copper": {
+				"textures": {
+					"item": "fluxindustry:items/cable_uninsulated_copper"
+				}
+			},
+			"tin": {
+				"textures": {
+					"item": "fluxindustry:items/cable_uninsulated_tin"
+				}
+			},
+			"aluminum": {
+				"textures": {
+					"item": "fluxindustry:items/cable_uninsulated_aluminum"
+				}
+			},
+			"bronze": {
+				"textures": {
+					"item": "fluxindustry:items/cable_uninsulated_bronze"
+				}
+			},
+			"iron": {
+				"textures": {
+					"item": "fluxindustry:items/cable_uninsulated_iron"
+				}
+			},
+			"gold": {
+				"textures": {
+					"item": "fluxindustry:items/cable_uninsulated_gold"
+				}
+			}
+		}		
+    }
+}

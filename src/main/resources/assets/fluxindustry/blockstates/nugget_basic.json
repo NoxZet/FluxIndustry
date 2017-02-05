@@ -1,0 +1,48 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "fluxindustry:item",
+		"textures": {
+			"item": "fluxindustry:items/nugget_copper"
+		}
+	},
+    "variants": {
+        "variant": {
+			"copper": {
+				"textures": {
+					"item": "fluxindustry:items/nugget_copper"
+				}
+			},
+			"tin": {
+				"textures": {
+					"item": "fluxindustry:items/nugget_tin"
+				}
+			},
+			"zinc": {
+				"textures": {
+					"item": "fluxindustry:items/nugget_zinc"
+				}
+			},
+			"aluminum": {
+				"textures": {
+					"item": "fluxindustry:items/nugget_aluminum"
+				}
+			},
+			"lead": {
+				"textures": {
+					"item": "fluxindustry:items/nugget_lead"
+				}
+			},
+			"bronze": {
+				"textures": {
+					"item": "fluxindustry:items/nugget_bronze"
+				}
+			},
+			"brass": {
+				"textures": {
+					"item": "fluxindustry:items/nugget_brass"
+				}
+			}
+		}		
+    }
+}

@@ -1,0 +1,49 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "fluxindustry:treetap"
+	},
+	"variants": {
+		"facing": {
+			"down": {
+			},
+			"up": {
+			},
+			"north": {
+				"y": 180
+			},
+			"south": {
+				"y": 0
+			},
+			"west": {
+				"y": 90
+			},
+			"east": {
+				"y": 270
+			}
+		},
+		"level": {
+			"0": {
+				"model": "fluxindustry:treetap"
+			},
+			"1": {
+				"model": "fluxindustry:treetap_1"
+			},
+			"2": {
+				"model": "fluxindustry:treetap_2"
+			},
+			"3": {
+				"model": "fluxindustry:treetap_3"
+			},
+			"4": {
+				"model": "fluxindustry:treetap_4"
+			},
+			"5": {
+				"model": "fluxindustry:treetap_5"
+			},
+			"6": {
+				"model": "fluxindustry:treetap_6"
+			}
+		}
+	}
+}

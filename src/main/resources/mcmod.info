@@ -1,0 +1,16 @@
+[
+{
+  "modid": "fluxindustry",
+  "name": "Flux Industry",
+  "description": "Energetic expansion, utilizing power and new resources",
+  "version": "${version}",
+  "mcversion": "1.11",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["NoxZet"],
+  "credits": "NoxZet",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

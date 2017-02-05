@@ -1,0 +1,78 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "fluxindustry:item",
+		"textures": {
+			"item": "fluxindustry:items/powder_copper"
+		}
+	},
+    "variants": {
+        "variant": {
+			"copper": {
+				"textures": {
+					"item": "fluxindustry:items/powder_copper"
+				}
+			},
+			"tin": {
+				"textures": {
+					"item": "fluxindustry:items/powder_tin"
+				}
+			},
+			"zinc": {
+				"textures": {
+					"item": "fluxindustry:items/powder_zinc"
+				}
+			},
+			"aluminum": {
+				"textures": {
+					"item": "fluxindustry:items/powder_aluminum"
+				}
+			},
+			"lead": {
+				"textures": {
+					"item": "fluxindustry:items/powder_lead"
+				}
+			},
+			"bronze": {
+				"textures": {
+					"item": "fluxindustry:items/powder_bronze"
+				}
+			},
+			"brass": {
+				"textures": {
+					"item": "fluxindustry:items/powder_brass"
+				}
+			},
+			"uranium": {
+				"textures": {
+					"item": "fluxindustry:items/powder_uranium"
+				}
+			},
+			"iron": {
+				"textures": {
+					"item": "fluxindustry:items/powder_iron"
+				}
+			},
+			"gold": {
+				"textures": {
+					"item": "fluxindustry:items/powder_gold"
+				}
+			},
+			"granite": {
+				"textures": {
+					"item": "fluxindustry:items/powder_granite"
+				}
+			},
+			"diorite": {
+				"textures": {
+					"item": "fluxindustry:items/powder_diorite"
+				}
+			},
+			"andesite": {
+				"textures": {
+					"item": "fluxindustry:items/powder_andesite"
+				}
+			}
+		}		
+    }
+}

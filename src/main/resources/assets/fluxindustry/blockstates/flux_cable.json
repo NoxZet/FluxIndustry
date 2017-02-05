@@ -1,0 +1,80 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "fluxindustry:flux_cable_hub",
+		"textures": {
+			"side": "fluxindustry:blocks/flux_cable_side",
+			"hub": "fluxindustry:blocks/flux_cable_copper"
+		}
+	},
+    "variants": {
+		"variant": {
+			"copper": {
+				"textures": { "hub": "fluxindustry:blocks/flux_cable_copper" }
+			},
+			"tin": {
+				"textures": { "hub": "fluxindustry:blocks/flux_cable_tin" }
+			},
+			"aluminum": {
+				"textures": { "hub": "fluxindustry:blocks/flux_cable_aluminum" }
+			},
+			"bronze": {
+				"textures": { "hub": "fluxindustry:blocks/flux_cable_bronze" }
+			},
+			"iron": {
+				"textures": { "hub": "fluxindustry:blocks/flux_cable_iron" }
+			},
+			"gold": {
+				"textures": { "hub": "fluxindustry:blocks/flux_cable_gold" }
+			}
+		},
+        "down": {
+			"true": {
+				"submodel": {
+					"down": { "model": "fluxindustry:flux_cable_north", "x": 90 }
+				}
+			},
+			"false": {}
+		},
+        "up": {
+			"true": {
+				"submodel": {
+					"up": { "model": "fluxindustry:flux_cable_north", "x": 270 }
+				}
+			},
+			"false": {}
+		},
+        "east": {
+			"true": {
+				"submodel": {
+					"east": { "model": "fluxindustry:flux_cable_north", "y": 90 }
+				}
+			},
+			"false": {}
+		},
+        "west": {
+			"true": {
+				"submodel": {
+					"west": { "model": "fluxindustry:flux_cable_north", "y": 270 }
+				}
+			},
+			"false": {}
+		},
+        "south": {
+			"true": {
+				"submodel": {
+					"south": { "model": "fluxindustry:flux_cable_north", "y": 180 }
+				}
+			},
+			"false": {}
+		},
+        "north": {
+			"true": {
+				"submodel": {
+					"north": { "model": "fluxindustry:flux_cable_north" }
+				}
+			},
+			"false": {}
+		}
+    }
+}

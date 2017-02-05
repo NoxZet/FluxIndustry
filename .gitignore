@@ -1,0 +1,11 @@
+.gradle/
+.settings/
+bin/
+build/
+eclipse/
+run/
+dev*
+.classpath
+.project
+gradle.properties
+FluxIndustry*
