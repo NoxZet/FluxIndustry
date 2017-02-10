@@ -19,26 +19,32 @@ public class FluxBatteryContainer implements ITeslaConsumer, ITeslaHolder, ITesl
 	
 	public long givePower (long Tesla, boolean simulated)
 	{
-		if (chargeable)
+		if (stack.getCount()==1)
 		{
-			long stored = getStoredPower();
-			long acceptedTesla = Math.min(this.capacity - stored, Tesla);
-			System.out.println(acceptedTesla);
-			if (!simulated)
-				stack.getTagCompound().setLong("Tesla", stored + acceptedTesla);
-			return acceptedTesla;
+			if (chargeable)
+			{
+				long stored = getStoredPower();
+				long acceptedTesla = Math.min(this.capacity - stored, Tesla);
+				System.out.println(acceptedTesla);
+				if (!simulated)
+					stack.getTagCompound().setLong("Tesla", stored + acceptedTesla);
+				return acceptedTesla;
+			}
 		}
-		else
-			return 0;
+		return 0;
 	}
 	
 	public long takePower (long Tesla, boolean simulated)
 	{
-		long stored = getStoredPower();
-		long removedTesla = Math.min(stored, Tesla);
-		if (!simulated)
-			stack.getTagCompound().setLong("Tesla", stored - removedTesla);
-		return removedTesla;
+		if (stack.getCount()==1)
+		{
+			long stored = getStoredPower();
+			long removedTesla = Math.min(stored, Tesla);
+			if (!simulated)
+				stack.getTagCompound().setLong("Tesla", stored - removedTesla);
+			return removedTesla;
+		}
+		return 0;
 	}
 	
 	public void setCapacity(long capacity)
