@@ -141,14 +141,17 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
 	@Override
 	public int receiveEnergy(ItemStack stack, int Tesla, boolean simulated)
 	{
-		int meta = this.getMetaWithBounds(stack);
-		if (this.chargeable[meta])
+		if (stack.getCount()==1)
 		{
-			long stored = stack.getTagCompound().getLong("Tesla");
-			long acceptedTesla = Math.min(this.capacity[meta] - stored, Tesla);
-			if (!simulated)
-				stack.getTagCompound().setLong("Tesla", stored + acceptedTesla);
-			return (int)acceptedTesla;
+			int meta = this.getMetaWithBounds(stack);
+			if (this.chargeable[meta])
+			{
+				long stored = stack.getTagCompound().getLong("Tesla");
+				long acceptedTesla = Math.min(this.capacity[meta] - stored, Tesla);
+				if (!simulated)
+					stack.getTagCompound().setLong("Tesla", stored + acceptedTesla);
+				return (int)acceptedTesla;
+			}
 		}
 		return 0;
 	}
@@ -156,12 +159,16 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
 	@Override
 	public int extractEnergy(ItemStack stack, int Tesla, boolean simulated)
 	{
-		int meta = this.getMetaWithBounds(stack);
-		long stored = stack.getTagCompound().getLong("Tesla");
-		long removedTesla = Math.min(stored, Tesla);
-		if (!simulated)
-			stack.getTagCompound().setLong("Tesla", stored - removedTesla);
-		return (int)removedTesla;
+		if (stack.getCount()==1)
+		{
+			int meta = this.getMetaWithBounds(stack);
+			long stored = stack.getTagCompound().getLong("Tesla");
+			long removedTesla = Math.min(stored, Tesla);
+			if (!simulated)
+				stack.getTagCompound().setLong("Tesla", stored - removedTesla);
+			return (int)removedTesla;
+		}
+		return 0;
 	}
 
 	@Override
