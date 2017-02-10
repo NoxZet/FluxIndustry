@@ -24,10 +24,10 @@ import noxzet.fluxindustry.core.energy.FluxEnergyProducer;
 
 public class TileElectric extends TileEntityFlux implements ICapabilityProvider, ITickable, IFluxIndustryAPI, cofh.api.energy.IEnergyProvider, cofh.api.energy.IEnergyReceiver {
 
-	private FluxEnergyContainer container;
-	private FluxEnergyHolder containerHolder;
-	private FluxEnergyProducer containerProducer;
-	private FluxEnergyConsumer containerConsumer;
+	protected FluxEnergyContainer container;
+	protected FluxEnergyHolder containerHolder;
+	protected FluxEnergyProducer containerProducer;
+	protected FluxEnergyConsumer containerConsumer;
 	private boolean[] doesSideProduce = {false, false, false, false, false, false};
 	private boolean[] doesSideConsume = {false, false, false, false, false, false};
 	protected String fluxName = "unknown";
@@ -215,6 +215,7 @@ public class TileElectric extends TileEntityFlux implements ICapabilityProvider,
 		return (int) getCapacity();
 	}
 	
+	@Deprecated
 	public FluxEnergyContainer getTeslaContainer()
 	{
 		return container;

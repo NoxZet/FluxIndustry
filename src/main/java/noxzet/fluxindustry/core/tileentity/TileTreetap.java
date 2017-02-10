@@ -1,6 +1,8 @@
 package noxzet.fluxindustry.core.tileentity;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -41,11 +43,10 @@ public class TileTreetap extends TileEntityFlux implements ITickable {
 		{
 			if (level<oneLevel*6)
 			{
-				/*if (attachedToBlock instanceof BlockNewLog && attachedToState.getValue(BlockNewLog.VARIANT)==BlockPlanks.EnumType.JUNGLE)
+				if (attachedToBlock instanceof BlockOldLog && attachedToState.getValue(BlockOldLog.VARIANT)==BlockPlanks.EnumType.JUNGLE)
 					level=Math.min(oneLevel*6,level+3);
 				else
-					level=Math.min(oneLevel*6,level+2);*/
-				level=Math.min(oneLevel*6,level+20);
+					level=Math.min(oneLevel*6,level+2);
 				this.markDirty();
 				world.markBlockRangeForRenderUpdate(pos, pos);
 			}
@@ -54,6 +55,7 @@ public class TileTreetap extends TileEntityFlux implements ITickable {
 		{
 			world.setBlockState(pos, Blocks.AIR.getDefaultState());
 			Block.spawnAsEntity(world, pos, new ItemStack(FluxItems.treetap, 1, 0));
+			return;
 		}
 	}
 	

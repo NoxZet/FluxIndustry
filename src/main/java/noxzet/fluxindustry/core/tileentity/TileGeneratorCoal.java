@@ -15,9 +15,7 @@ import noxzet.fluxindustry.core.energy.FluxEnergyContainer;
 
 public class TileGeneratorCoal extends TileElectricInventory {
 	
-	private ItemStackHandler inventory;
 	private int fuelLevel, fuelMax;
-	private FluxEnergyContainer container;
 	private int powerPerTick;
 	
 	public TileGeneratorCoal()
@@ -28,8 +26,6 @@ public class TileGeneratorCoal extends TileElectricInventory {
 	public TileGeneratorCoal(long stored, long capacity, long inputRate, long outputRate)
 	{
 		super(stored, capacity, inputRate, outputRate, 2);
-		inventory = super.getStackHandler();
-		container = super.getTeslaContainer();
 		fuelLevel = 0;
 		fuelMax = 0;
 		powerPerTick = 30;
@@ -61,6 +57,12 @@ public class TileGeneratorCoal extends TileElectricInventory {
 					stack = ItemStack.EMPTY;
 				inventory.setStackInSlot(1, stack);
 			}
+		}
+		long energy = this.slotGiveEnergy(0, container.getMaxOutputTick(false), false);
+		if (energy>0)
+		{
+			container.changePower(-energy);
+			this.markDirty();
 		}
 	}
 	

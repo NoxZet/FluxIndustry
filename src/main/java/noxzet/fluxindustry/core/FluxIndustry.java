@@ -23,11 +23,13 @@ public class FluxIndustry
 	@SidedProxy(clientSide="noxzet.fluxindustry.core.proxy.ClientProxy", serverSide="noxzet.fluxindustry.core.proxy.CommonProxy")
 	public static CommonProxy proxy;
 	public static FluxIndustry INSTANCE;
+	public static String unit;
     
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
     	INSTANCE = this;
+    	unit = "T";
     	FluxItems.init();
     	FluxBlocks.init();
     	FluxCreativeTabs.init();

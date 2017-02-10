@@ -57,6 +57,12 @@ item.fluxindustry.treetap.name=Treetap
 item.fluxindustry.rubbertree_sap.name=Rubbertree Sap
 item.fluxindustry.rubber_plate.name=Rubber
 
+item.fluxindustry.battery_basic.name=Basic Battery
+item.fluxindustry.battery_redstone.name=Redstone Battery
+item.fluxindustry.battery_lead.name=Lead Battery
+item.fluxindustry.battery_lithium.name=Lithium Battery
+item.fluxindustry.battery_quartz.name=Quartz Battery
+
 item.fluxindustry.cable_uninsulated_copper.name=Uninsulated Copper Cable
 item.fluxindustry.cable_uninsulated_tin.name=Uninsulated Tin Cable
 item.fluxindustry.cable_uninsulated_aluminum.name=Uninsulated Aluminum Cable

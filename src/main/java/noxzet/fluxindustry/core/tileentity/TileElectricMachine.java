@@ -10,9 +10,7 @@ import noxzet.fluxindustry.core.energy.FluxEnergyContainer;
 
 public class TileElectricMachine extends TileElectricInventory {
 
-	private ItemStackHandler inventory;
 	private int burnProgress;
-	private FluxEnergyContainer container;
 	private ItemStack previousStack = ItemStack.EMPTY;
 	private ItemStack previousResultStack = ItemStack.EMPTY;
 	private int teslaPerTick = 14;
@@ -27,8 +25,6 @@ public class TileElectricMachine extends TileElectricInventory {
 	public TileElectricMachine(long stored, long capacity, long inputRate, long outputRate)
 	{
 		super(stored, capacity, inputRate, outputRate, 3);
-		inventory = super.getStackHandler();
-		container = super.getTeslaContainer();
 		burnProgress = 0;
 		this.fluxIsMachine = true;
 		this.setAllEnergyHandling(EnumEnergyHandling.INPUT);
@@ -61,6 +57,12 @@ public class TileElectricMachine extends TileElectricInventory {
 	{
 		super.update();
 		ItemStack thisStack = inventory.getStackInSlot(0).copy();
+		long energy = this.slotTakeEnergy(1, container.getMaxInputTick(false), false);
+		if (energy>0)
+		{
+			container.changePower(energy);
+			this.markDirty();
+		}
 		if (!thisStack.isEmpty())
 		{
 			ItemStack resultStack = getResult(thisStack);

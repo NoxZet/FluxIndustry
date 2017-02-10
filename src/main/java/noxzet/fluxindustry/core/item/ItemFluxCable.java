@@ -25,8 +25,8 @@ import noxzet.fluxindustry.core.tileentity.TileFluxCable;
 
 public class ItemFluxCable extends ItemFlux {
 
-	public NBTTagCompound[] itemTag = new NBTTagCompound[6];
-	public NBTTagCompound[] itemCableTag = new NBTTagCompound[6];
+	public static NBTTagCompound[] itemTag = new NBTTagCompound[6];
+	public static NBTTagCompound[] itemCableTag = new NBTTagCompound[6];
 	public ItemFluxCable(String unlocalizedName)
 	{
 		super(unlocalizedName);
@@ -107,11 +107,11 @@ public class ItemFluxCable extends ItemFlux {
 		{
 			NBTTagCompound itemCableTag = itemTag.getCompoundTag("teslaCable");
 			if (itemCableTag.hasKey("TeslaCapacity", NBT.TAG_LONG))
-				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.max") + " " + itemCableTag.getLong("TeslaCapacity") + " T/t");
+				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.max") + " " + itemCableTag.getLong("TeslaCapacity") + " "+FluxIndustry.unit+"/t");
 			if (itemCableTag.hasKey("TeslaMinPower", NBT.TAG_LONG))
-				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.min") + " " + itemCableTag.getLong("TeslaMinPower") + " T/t");
+				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.min") + " " + itemCableTag.getLong("TeslaMinPower") + " "+FluxIndustry.unit+"/t");
 			if (itemCableTag.hasKey("TeslaLoss", NBT.TAG_FLOAT))
-				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.loss") + " " + itemCableTag.getFloat("TeslaLoss") + " T/m");
+				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.loss") + " " + itemCableTag.getFloat("TeslaLoss") + " "+FluxIndustry.unit+"/m");
 		}
     }
 	
