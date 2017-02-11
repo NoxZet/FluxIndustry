@@ -35,7 +35,8 @@ public class TileFluxCable extends TileEntityFlux implements IFluxCable, ITickab
 	@Override
 	public void update()
 	{
-		container.update();
+		if (!world.isRemote)
+			container.update();
 	}
 	
 	@Override
