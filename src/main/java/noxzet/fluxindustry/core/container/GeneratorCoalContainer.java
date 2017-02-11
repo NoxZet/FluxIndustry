@@ -12,6 +12,7 @@ public class GeneratorCoalContainer extends FluxContainer {
 	{
 		super(playerInventory, tile);
 		this.tile = tile;
+		this.values = new int[]{0, 0, 0, 0};
 		addContainerSlots();
 	}
 	

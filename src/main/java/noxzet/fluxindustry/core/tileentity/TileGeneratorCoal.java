@@ -17,6 +17,10 @@ public class TileGeneratorCoal extends TileElectricInventory {
 	
 	private int fuelLevel, fuelMax;
 	private int powerPerTick;
+	private static final int FIELD_FUEL_MAX = 0;
+	private static final int FIELD_FUEL_LEVEL = 1;
+	private static final int FIELD_ENERGY_CAPACITY = 2;
+	private static final int FIELD_ENERGY_STORED = 3;
 	
 	public TileGeneratorCoal()
 	{
@@ -38,31 +42,34 @@ public class TileGeneratorCoal extends TileElectricInventory {
 	public void update()
 	{
 		super.update();
-		if (fuelLevel>0)
+		if (!world.isRemote)
 		{
-			fuelLevel--;
-			container.changePower(30);
-			this.markDirty();
-		}
-		if (fuelLevel<=0 && this.getStoredPower()<this.getCapacity())
-		{
-			int fuel = getFuelBurnTime(inventory.getStackInSlot(1));
-			if (fuel>0)
+			if (fuelLevel>0)
 			{
-				fuelLevel += fuel;
-				fuelMax = fuel;
-				ItemStack stack = (inventory.getStackInSlot(1)).copy();
-				stack.shrink(1);
-				if (stack.getCount() == 0)
-					stack = ItemStack.EMPTY;
-				inventory.setStackInSlot(1, stack);
+				fuelLevel--;
+				container.changePower(30);
+				this.markDirty();
 			}
-		}
-		long energy = this.slotGiveEnergy(0, container.getMaxOutputTick(false), false);
-		if (energy>0)
-		{
-			container.changePower(-energy);
-			this.markDirty();
+			if (fuelLevel<=0 && this.getStoredPower()<this.getCapacity())
+			{
+				int fuel = getFuelBurnTime(inventory.getStackInSlot(1));
+				if (fuel>0)
+				{
+					fuelLevel += fuel;
+					fuelMax = fuel;
+					ItemStack stack = (inventory.getStackInSlot(1)).copy();
+					stack.shrink(1);
+					if (stack.getCount() == 0)
+						stack = ItemStack.EMPTY;
+					inventory.setStackInSlot(1, stack);
+				}
+			}
+			long energy = this.slotGiveEnergy(0, container.getMaxOutputTick(false), false);
+			if (energy>0)
+			{
+				container.changePower(-energy);
+				this.markDirty();
+			}
 		}
 	}
 	
@@ -90,6 +97,31 @@ public class TileGeneratorCoal extends TileElectricInventory {
 	public int getFuelMax()
 	{
 		return fuelMax;
+	}
+	
+	@Override
+	public int getField(int id)
+	{
+		switch (id)
+		{
+			case FIELD_FUEL_LEVEL: return this.fuelLevel;
+			case FIELD_FUEL_MAX: return this.fuelMax;
+			case FIELD_ENERGY_STORED: return (int)container.getStoredPower();
+			case FIELD_ENERGY_CAPACITY: return (int)container.getCapacity();
+			default: return 0;
+		}
+	}
+	
+	@Override
+	public void setField(int id, int data)
+	{
+		switch (id)
+		{
+			case FIELD_FUEL_LEVEL: this.fuelLevel = data; break;
+			case FIELD_FUEL_MAX: this.fuelMax = data; break;
+			case FIELD_ENERGY_STORED: container.setStoredPower(data); break;
+			case FIELD_ENERGY_CAPACITY: container.setCapacity(data); break;
+		}
 	}
 	
 	@Override

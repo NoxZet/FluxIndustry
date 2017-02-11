@@ -2,24 +2,61 @@ package noxzet.fluxindustry.core.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import noxzet.fluxindustry.core.tileentity.TileElectricInventory;
 
 public class FluxContainer extends Container {
 
 	private TileElectricInventory tile;
+	protected int[] values;
 	
 	public FluxContainer(IInventory playerInventory, TileElectricInventory tile)
 	{
 		this.tile = tile;
+		this.values = new int[]{};
 		addPlayerSlots(playerInventory);
 	}
 	
 	public TileElectricInventory getTile()
 	{
 		return tile;
+	}
+	
+	@Override
+	public void addListener(IContainerListener listener)
+	{
+		super.addListener(listener);
+		for(int i = 0; i < values.length; i++)
+			listener.sendProgressBarUpdate(this, i, values[i]);
+	}
+	
+	@Override
+	public void detectAndSendChanges()
+	{
+        super.detectAndSendChanges();
+        for (IContainerListener listener : this.listeners) {
+			for(int i = 0; i < values.length; i++)
+			{
+				int field = tile.getField(i);
+				if (values[i] != field)
+				{
+					values[i] = field;
+					listener.sendProgressBarUpdate(this, i, tile.getField(i));
+				}
+			}
+        }
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void updateProgressBar(int id, int data)
+	{
+		tile.setField(id, data);
 	}
 	
 	public void addPlayerSlots(IInventory playerInventory)

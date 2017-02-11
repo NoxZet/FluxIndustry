@@ -4,11 +4,11 @@
   "name": "Flux Industry",
   "description": "Energetic expansion, utilizing power and new resources",
   "version": "${version}",
-  "mcversion": "1.11",
+  "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
   "authorList": ["NoxZet"],
-  "credits": "NoxZet",
+  "credits": "Reach24 for creating various textures",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

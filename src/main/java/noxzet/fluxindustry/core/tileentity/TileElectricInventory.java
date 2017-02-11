@@ -38,10 +38,18 @@ public class TileElectricInventory extends TileElectric {
 		};
 	}
 	
-	@Deprecated
 	public ItemStackHandler getStackHandler()
 	{
 		return inventory;
+	}
+	
+	public int getField(int id)
+	{
+		return 0;
+	}
+	
+	public void setField(int id, int data)
+	{
 	}
 	
 	@Override

@@ -62,41 +62,45 @@ public class TileElectric extends TileEntityFlux implements ICapabilityProvider,
 		containerConsumer = new FluxEnergyConsumer(container);
 	}
 	
+	@Override
 	public void update()
 	{
-		container.update();
-		EnumFacing dir, dirOpposite;
-		TileEntity tile;
-		long maxOutput;
-		for(int i = 0; i < 6; i++)
+		if (!world.isRemote)
 		{
-			if (doesSideProduce[i])
+			container.update();
+			EnumFacing dir, dirOpposite;
+			TileEntity tile;
+			long maxOutput;
+			for(int i = 0; i < 6; i++)
 			{
-				maxOutput = container.getMaxOutputTick(true);
-				if (maxOutput>0)
+				if (doesSideProduce[i])
 				{
-					dir = EnumFacing.getFront(i);
-					dirOpposite = dir.getOpposite();
-					tile = world.getTileEntity(pos.offset(dir));
-					if (tile != null)
+					maxOutput = container.getMaxOutputTick(true);
+					if (maxOutput>0)
 					{
-						if (tile.hasCapability(TeslaCapabilities.CAPABILITY_CONSUMER, dirOpposite))
+						dir = EnumFacing.getFront(i);
+						dirOpposite = dir.getOpposite();
+						tile = world.getTileEntity(pos.offset(dir));
+						if (tile != null)
 						{
-							ITeslaConsumer consumer = (ITeslaConsumer)tile.getCapability(TeslaCapabilities.CAPABILITY_CONSUMER, dirOpposite);
-							container.takePower(consumer.givePower(maxOutput, false), false, true);
-						}
-						else if (tile.hasCapability(CapabilityEnergy.ENERGY, dirOpposite))
-						{
-							IEnergyStorage consumer = (IEnergyStorage)tile.getCapability(CapabilityEnergy.ENERGY, dirOpposite);
-							if (consumer.canReceive())
+							if (tile.hasCapability(TeslaCapabilities.CAPABILITY_CONSUMER, dirOpposite))
 							{
-								container.takePower((long)consumer.receiveEnergy((int)maxOutput, false), false, true);
+								ITeslaConsumer consumer = (ITeslaConsumer)tile.getCapability(TeslaCapabilities.CAPABILITY_CONSUMER, dirOpposite);
+								container.takePower(consumer.givePower(maxOutput, false), false, true);
 							}
-						}
-						else if (tile instanceof cofh.api.energy.IEnergyReceiver)
-						{
-							cofh.api.energy.IEnergyReceiver rftile = (cofh.api.energy.IEnergyReceiver)tile;
-							container.takePower((long)rftile.receiveEnergy(dirOpposite, (int)maxOutput, false), false, true);
+							else if (tile.hasCapability(CapabilityEnergy.ENERGY, dirOpposite))
+							{
+								IEnergyStorage consumer = (IEnergyStorage)tile.getCapability(CapabilityEnergy.ENERGY, dirOpposite);
+								if (consumer.canReceive())
+								{
+									container.takePower((long)consumer.receiveEnergy((int)maxOutput, false), false, true);
+								}
+							}
+							else if (tile instanceof cofh.api.energy.IEnergyReceiver)
+							{
+								cofh.api.energy.IEnergyReceiver rftile = (cofh.api.energy.IEnergyReceiver)tile;
+								container.takePower((long)rftile.receiveEnergy(dirOpposite, (int)maxOutput, false), false, true);
+							}
 						}
 					}
 				}

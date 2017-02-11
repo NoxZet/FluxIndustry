@@ -1,5 +1,7 @@
 package noxzet.fluxindustry.core.tileentity;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -7,6 +9,13 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityFlux extends TileEntity {
 
+	@Override
+    @Nullable
+    public SPacketUpdateTileEntity getUpdatePacket()
+    {
+        return new SPacketUpdateTileEntity(this.getPos(), this.getBlockMetadata(), this.getUpdateTag());
+    }
+	
 	@Override
 	public NBTTagCompound getUpdateTag()
 	{
@@ -17,10 +26,7 @@ public class TileEntityFlux extends TileEntity {
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet)
 	{
 		super.onDataPacket(net, packet);
-		if (world.isRemote)
-		{
-			readFromNBT(packet.getNbtCompound());
-		}
+		readFromNBT(packet.getNbtCompound());
 	}
 	
 }

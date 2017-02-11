@@ -176,12 +176,12 @@ public class BlockFluxCable extends BlockFlux implements ITileEntityClassProvide
 		return itemstack;
 	}
 	
-	@Override
+	/*@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float side, float hitX, float hitY)
 	{
 		System.out.println(((IFluxCable)world.getTileEntity(pos)).getFluxCableContainer().getEnergyAvailable());
 		return true;
-	}
+	}*/
 	
 	public static enum CableVariant implements IStringSerializable
 	{
