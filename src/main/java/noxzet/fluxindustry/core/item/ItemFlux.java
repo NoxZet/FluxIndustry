@@ -17,7 +17,7 @@ public class ItemFlux extends Item {
 	}
 	
 	public void registerItemModel() {
-		FluxIndustry.proxy.registerItemRenderer(this, 0, "variant=normal");
+		FluxIndustry.proxy.registerItemRenderer(this, 0, "normal");
 	}
 	
 	@Override

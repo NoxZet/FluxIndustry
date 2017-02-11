@@ -53,9 +53,10 @@ item.fluxindustry.powder_granite.name=Granite Powder
 item.fluxindustry.powder_diorite.name=Diorite Powder
 item.fluxindustry.powder_andesite.name=Andesite Powder
 
-item.fluxindustry.treetap.name=Treetap
 item.fluxindustry.rubbertree_sap.name=Rubbertree Sap
 item.fluxindustry.rubber_plate.name=Rubber
+item.fluxindustry.wrench_brass.name=Brass Wrench
+item.fluxindustry.treetap.name=Treetap
 
 item.fluxindustry.battery_basic.name=Basic Battery
 item.fluxindustry.battery_redstone.name=Redstone Battery

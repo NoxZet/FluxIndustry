@@ -34,10 +34,15 @@ public class BlockDirection extends BlockFlux {
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
 	{
-		if (horizontalOnly)
-			return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+		return this.getDefaultState().withProperty(FACING, getFacing(pos, placer));
+	}
+	
+	public EnumFacing getFacing(BlockPos pos, EntityLivingBase player)
+	{
+		if (this.getHorizontalOnly())
+			return player.getHorizontalFacing().getOpposite();
 		else
-			return this.getDefaultState().withProperty(FACING, EnumFacing.getDirectionFromEntityLiving(pos, placer));
+			return EnumFacing.getDirectionFromEntityLiving(pos, player);
 	}
 	
     @Override
@@ -67,6 +72,11 @@ public class BlockDirection extends BlockFlux {
 	public void setHorizontalOnly(boolean horizontalOnly)
 	{
 		this.horizontalOnly = horizontalOnly;
+	}
+	
+	public boolean getHorizontalOnly()
+	{
+		return this.horizontalOnly;
 	}
 	
 }

@@ -25,7 +25,6 @@ public class FluxBatteryContainer implements ITeslaConsumer, ITeslaHolder, ITesl
 			{
 				long stored = getStoredPower();
 				long acceptedTesla = Math.min(this.capacity - stored, Tesla);
-				System.out.println(acceptedTesla);
 				if (!simulated)
 					stack.getTagCompound().setLong("Tesla", stored + acceptedTesla);
 				return acceptedTesla;
