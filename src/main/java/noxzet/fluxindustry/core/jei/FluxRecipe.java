@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 
 public class FluxRecipe {
 
-	public ArrayList<ArrayList<ItemStack>> inputs;
+	public ArrayList<List<ItemStack>> inputs;
 	private ArrayList<ItemStack> outputs;
 	
 	public FluxRecipe()
@@ -36,7 +36,7 @@ public class FluxRecipe {
 		return outputs.size();
 	}
 	
-	public ArrayList<ItemStack> getInput(int i)
+	public List<ItemStack> getInput(int i)
 	{
 		return inputs.get(i);
 	}
@@ -46,7 +46,7 @@ public class FluxRecipe {
 		return outputs.get(i).copy();
 	}
 	
-	public List<ArrayList<ItemStack>> getInputs()
+	public List<List<ItemStack>> getInputs()
 	{
 		return inputs;
 	}

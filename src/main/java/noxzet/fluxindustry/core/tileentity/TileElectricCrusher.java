@@ -8,7 +8,7 @@ public class TileElectricCrusher extends TileElectricMachine {
 	
 	public TileElectricCrusher()
 	{
-		super(0, 3000, 18, 0);
+		super(0, 3000, 40, 0);
 		super.setTeslaPerTick(14);
 		super.setBurnTimeNeeded(180);
 	}

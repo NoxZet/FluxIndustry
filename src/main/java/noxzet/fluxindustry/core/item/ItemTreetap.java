@@ -18,12 +18,6 @@ public class ItemTreetap extends ItemFlux {
 		super(unlocalizedName);
 	}
 	
-	@Override
-	public void registerItemModel()
-	{
-		FluxIndustry.proxy.registerItemRenderer(this, 0, "normal");
-	}
-	
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
     	ItemStack itemstack = player.getHeldItem(hand);

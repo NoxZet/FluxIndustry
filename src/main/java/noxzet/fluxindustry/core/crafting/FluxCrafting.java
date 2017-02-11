@@ -86,10 +86,14 @@ public class FluxCrafting {
 				'C', "nuggetCopper"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxItems.cableUninsulated, 1, 1), "TTT",
 				'T', "nuggetTin"));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(FluxItems.cableBasic, 1, 0, ItemFluxCable.itemTag[0]),
-				new ItemStack(FluxItems.cableUninsulated, 1, 0), "itemRubber"));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(FluxItems.cableBasic, 1, 1, ItemFluxCable.itemTag[1]),
-				new ItemStack(FluxItems.cableUninsulated, 1, 1), "itemRubber"));
+		// Insulated tin and copper wire with basic properties
+		ItemStack resultStack;
+		resultStack = new ItemStack(FluxItems.cableBasic, 1, 0);
+		resultStack.setTagCompound(ItemFluxCable.itemTag[0]);
+		GameRegistry.addRecipe(new ShapelessOreRecipe(resultStack, new ItemStack(FluxItems.cableUninsulated, 1, 0), "itemRubber"));
+		resultStack = new ItemStack(FluxItems.cableBasic, 1, 1);
+		resultStack.setTagCompound(ItemFluxCable.itemTag[1]);
+		GameRegistry.addRecipe(new ShapelessOreRecipe(resultStack, new ItemStack(FluxItems.cableUninsulated, 1, 1), "itemRubber"));
 	}
 	
 	private static void initCrafting()
@@ -101,9 +105,12 @@ public class FluxCrafting {
 				'C', new ItemStack(FluxItems.cableUninsulated, 1, 0), 'R', "dustRedstone", 'B', new ItemStack(FluxItems.batteryBasic, 1, 0)));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxItems.batteryBasic, 1, 2), "CCC", "BBB", "LLL",
 				'C', new ItemStack(FluxItems.cableUninsulated, 1, 3), 'L', "ingotLead", 'B', new ItemStack(FluxItems.batteryBasic, 1, 1)));
-		// Machines
+		// Misc
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxItems.wrenchBrass, 1), " B ", " BB", "B  ",
+				'B', "ingotBrass"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxItems.treetap, 1), " I ", "W W", "SWS",
 				'I', "ingotIron", 'W', "plankWood", 'S', "stickWood"));
+		// Machines
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxBlocks.blockMachine, 1), "ICI", "ITI", "ICI",
 				'I', "ingotIron", 'C', "ingotCopper", 'T', "ingotTin"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxBlocks.generatorCoal, 1), "CCC", "R#R", " F ",

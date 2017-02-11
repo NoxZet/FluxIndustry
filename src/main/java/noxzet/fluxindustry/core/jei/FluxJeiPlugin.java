@@ -34,6 +34,7 @@ public class FluxJeiPlugin extends BlankModPlugin {
 		registry.addRecipeClickArea(ElectricFurnaceContainerGui.class, 78, 35, 26, 15, VanillaRecipeCategoryUid.SMELTING);
 		registry.addRecipeClickArea(ElectricCrusherContainerGui.class, 71, 35, 38, 15, FluxCategoryUids.CRUSHER);
 		registry.addRecipeCategoryCraftingItem(new ItemStack(FluxBlocks.electricCrusher), FluxCategoryUids.CRUSHER);
+		registry.addRecipeCategoryCraftingItem(new ItemStack(FluxBlocks.electricFurnace), VanillaRecipeCategoryUid.SMELTING);
 	}
 	
 	public void registerCrusherRecipes(@Nonnull IModRegistry registry)

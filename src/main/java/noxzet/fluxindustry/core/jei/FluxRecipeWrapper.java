@@ -24,7 +24,7 @@ public abstract class FluxRecipeWrapper<T extends FluxRecipe> extends BlankRecip
 	@Override
 	public void getIngredients(@Nonnull IIngredients ingredients)
 	{
-		ingredients.setInputs(ItemStack.class, fluxRecipe.getInputs().get(0));
+		ingredients.setInputLists(ItemStack.class, fluxRecipe.getInputs());
 		ingredients.setOutputs(ItemStack.class, fluxRecipe.getOutputs());
 	}
 	

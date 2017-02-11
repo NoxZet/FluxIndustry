@@ -8,7 +8,7 @@ public class TileElectricFurnace extends TileElectricMachine {
 	
 	public TileElectricFurnace()
 	{
-		super(0, 2000, 16, 0);
+		super(0, 2000, 40, 0);
 		super.setTeslaPerTick(14);
 		super.setBurnTimeNeeded(120);
 	}

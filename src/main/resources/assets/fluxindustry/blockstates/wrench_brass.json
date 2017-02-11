@@ -1,0 +1,13 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "fluxindustry:item",
+		"textures": {
+			"item": "fluxindustry:items/wrench_brass"
+		}
+	},
+    "variants": {
+        "normal": [{
+		}]
+    }
+}
