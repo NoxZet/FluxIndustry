@@ -3,12 +3,21 @@
 	"defaults": {
 		"model": "cube_all",
 		"textures": {
-			"all": "fluxindustry:blocks/block_machine"
+			"all": "fluxindustry:blocks/block_machine_basic"
 		}
 	},
     "variants": {
-        "normal": [
-			{}
-		]
+        "variant": {
+			0: {
+				"textures": {
+					"all": "fluxindustry:blocks/block_machine_basic"
+				}
+			},
+			1: {
+				"textures": {
+					"all": "fluxindustry:blocks/block_machine_purple"
+				}
+			}
+		}
     }
 }

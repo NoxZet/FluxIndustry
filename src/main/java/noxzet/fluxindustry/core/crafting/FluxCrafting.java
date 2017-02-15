@@ -8,7 +8,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import noxzet.fluxindustry.core.block.BlockOreBasic.OreVariant;
+import noxzet.fluxindustry.core.block.BlockMetalBasic;
+import noxzet.fluxindustry.core.block.BlockOreBasic;
 import noxzet.fluxindustry.core.block.FluxBlocks;
 import noxzet.fluxindustry.core.item.FluxItems;
 import noxzet.fluxindustry.core.item.ItemFluxCable;
@@ -34,20 +35,21 @@ public class FluxCrafting {
 		int i, len;
 		String name;
 		// Ores, smelting recipes
-		len = OreVariant.values().length;
+		BlockOreBasic oreBasic = (BlockOreBasic)FluxBlocks.oreBasic;
+		len = oreBasic.variant.length;
 		for(i = 0; i < len; i++)
 		{
-			OreVariant oreVariant = OreVariant.fromMeta(i);
-			name = camelCase(OreVariant.fromMeta(i).getName());
+			name = camelCase(oreBasic.variant[i]);
 			OreDictionary.registerOre("ore"+name, new ItemStack(FluxBlocks.oreBasic, 1, i));
-			if (oreVariant.isSmeltable())
-				FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(FluxBlocks.oreBasic, 1, i), new ItemStack(FluxItems.ingotBasic, 1, i), oreVariant.getExperience());
+			if (oreBasic.smeltable[i])
+				FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(FluxBlocks.oreBasic, 1, i), new ItemStack(FluxItems.ingotBasic, 1, i), oreBasic.experience[i]);
 		}
 		// Ingots, metal blocks, nuggets
-		len = ((ItemFluxMulti)FluxItems.ingotBasic).NAME.length;
+		BlockMetalBasic metalBasic = (BlockMetalBasic)FluxBlocks.blockMetal;
+		len = metalBasic.variant.length;
 		for(i = 0; i < len; i++)
 		{
-			name = camelCase(((ItemFluxMulti)FluxItems.ingotBasic).NAME[i]);
+			name = camelCase(metalBasic.variant[i]);
 			OreDictionary.registerOre("ingot"+name, new ItemStack(FluxItems.ingotBasic, 1, i));
 			OreDictionary.registerOre("nugget"+name, new ItemStack(FluxItems.nuggetBasic, 1, i));
 			OreDictionary.registerOre("block"+name, new ItemStack(FluxBlocks.blockMetal, 1, i));
@@ -57,10 +59,11 @@ public class FluxCrafting {
 			GameRegistry.addShapelessRecipe(new ItemStack(FluxItems.nuggetBasic, 9, i), new ItemStack(FluxItems.ingotBasic, 1, i));
 		}
 		// Powders and smelting of FI dusts
-		len = ((ItemFluxMulti)FluxItems.powderBasic).NAME.length;
+		ItemFluxMulti powderBasic = ((ItemFluxMulti)FluxItems.powderBasic);
+		len = powderBasic.NAME.length;
 		for(i = 0; i < len; i++)
 		{
-			name = camelCase(((ItemFluxMulti)FluxItems.powderBasic).NAME[i]);
+			name = camelCase(powderBasic.NAME[i]);
 			OreDictionary.registerOre("dust"+name, new ItemStack(FluxItems.powderBasic, 1, i));
 			if (i < 7)
 				FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(FluxItems.powderBasic, 1, i), new ItemStack(FluxItems.ingotBasic, 1, i), 0.0F);
@@ -111,14 +114,16 @@ public class FluxCrafting {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxItems.treetap, 1), " I ", "W W", "SWS",
 				'I', "ingotIron", 'W', "plankWood", 'S', "stickWood"));
 		// Machines
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxBlocks.blockMachine, 1), "ICI", "ITI", "ICI",
-				'I', "ingotIron", 'C', "ingotCopper", 'T', "ingotTin"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxBlocks.blockMachine, 1, 0), "IBI", "ITI", "ITI",
+				'I', "ingotIron", 'T', "ingotTin", 'B', new ItemStack(FluxItems.batteryBasic, 1, 0)));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxBlocks.blockMachine, 1, 1), "ALA", "A#A", "ALA",
+				'A', "ingotAluminum", 'L', "ingotLead", '#', new ItemStack(FluxBlocks.blockMachine, 1, 0)));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxBlocks.generatorCoal, 1), "CCC", "R#R", " F ",
 				'C', "ingotCopper", 'R', "dustRedstone", '#', new ItemStack(FluxBlocks.blockMachine, 1), 'F', new ItemStack(Blocks.FURNACE)));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxBlocks.electricFurnace, 1), " T ", "R#R", "RFR",
 				'T', "ingotTin", 'R', "dustRedstone", '#', new ItemStack(FluxBlocks.blockMachine, 1), 'F', new ItemStack(Blocks.FURNACE)));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxBlocks.electricCrusher, 1), "FRF", "F#F", "FIF",
-				'F', new ItemStack(Items.FLINT), 'R', "dustRedstone", '#', new ItemStack(FluxBlocks.blockMachine, 1), 'I', "ingotIron"));
+				'F', new ItemStack(Items.FLINT, 1), 'R', "dustRedstone", '#', new ItemStack(FluxBlocks.blockMachine, 1), 'I', "ingotIron"));
 	}
 	
 	public static void initCrusher()

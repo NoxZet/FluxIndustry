@@ -79,5 +79,12 @@ public class BlockFlux extends Block {
 			return true;
         return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
+	
+	public int getMetaWithBounds(int meta, int max)
+	{
+		if (meta >= 0 && meta < max)
+			return meta;
+		return 0;
+	}
 
 }

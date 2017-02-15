@@ -66,7 +66,7 @@ public class BlockDirection extends BlockFlux {
 	
 	public IBlockState getActualState(IBlockState state)
 	{
-		return (IBlockState)FACING;
+		return state;
 	}
 	
 	public void setHorizontalOnly(boolean horizontalOnly)

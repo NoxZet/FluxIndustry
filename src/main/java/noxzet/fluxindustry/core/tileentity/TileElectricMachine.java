@@ -37,7 +37,6 @@ public class TileElectricMachine extends TileElectricInventory {
 	@Override
 	public void update()
 	{
-		super.update();
 		if (!world.isRemote)
 		{
 			ItemStack thisStack = inventory.getStackInSlot(0).copy();
@@ -88,7 +87,18 @@ public class TileElectricMachine extends TileElectricInventory {
 				previousResultStack = ItemStack.EMPTY;
 			}
 			this.markDirty();
+			// Render
+			if (burnProgress>0 && container.getStoredPower()>=teslaPerTick)
+			{
+				isLitHold = true;
+				isLit = true;
+			}
+			if (isLitHold==true)
+				isLitHold = false;
+			else
+				isLit = false;
 		}
+		super.update();
 	}
 	
 	@Override
