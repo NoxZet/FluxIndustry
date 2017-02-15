@@ -1,6 +1,5 @@
 package noxzet.fluxindustry.core.block;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import noxzet.fluxindustry.core.block.electric.BlockElectricCrusher;

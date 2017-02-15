@@ -9,13 +9,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import noxzet.fluxindustry.core.FluxIndustry;
-import noxzet.fluxindustry.core.block.electric.BlockFluxCable.CableVariant;
 import noxzet.fluxindustry.core.energy.FluxBatteryProvider;
 
 public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {

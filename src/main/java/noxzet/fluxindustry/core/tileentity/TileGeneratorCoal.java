@@ -9,9 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.items.ItemStackHandler;
 import noxzet.fluxindustry.core.energy.EnumEnergyHandling;
-import noxzet.fluxindustry.core.energy.FluxEnergyContainer;
 
 public class TileGeneratorCoal extends TileElectricInventory {
 	
