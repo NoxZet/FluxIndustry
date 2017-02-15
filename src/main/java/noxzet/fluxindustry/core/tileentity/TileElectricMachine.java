@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.items.ItemStackHandler;
 import noxzet.fluxindustry.core.energy.EnumEnergyHandling;
-import noxzet.fluxindustry.core.energy.FluxEnergyContainer;
 
 public class TileElectricMachine extends TileElectricInventory {
 

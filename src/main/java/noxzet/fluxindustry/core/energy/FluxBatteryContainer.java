@@ -1,6 +1,8 @@
 package noxzet.fluxindustry.core.energy;
 
-import net.darkhax.tesla.api.*;
+import net.darkhax.tesla.api.ITeslaConsumer;
+import net.darkhax.tesla.api.ITeslaHolder;
+import net.darkhax.tesla.api.ITeslaProducer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.energy.IEnergyStorage;
 
