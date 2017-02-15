@@ -21,7 +21,8 @@ tile.fluxindustry.block_aluminum.name=Aluminum Block
 tile.fluxindustry.block_lead.name=Lead Block
 tile.fluxindustry.block_bronze.name=Bronze Block
 tile.fluxindustry.block_brass.name=Brass Block
-tile.fluxindustry.block_machine.name=Machine Block
+tile.fluxindustry.block_machine_basic.name=Machine Block
+tile.fluxindustry.block_machine_purple.name=Machine Block Mk.2
 
 item.fluxindustry.ingot_copper.name=Copper Ingot
 item.fluxindustry.ingot_tin.name=Tin Ingot
@@ -55,6 +56,15 @@ item.fluxindustry.powder_andesite.name=Andesite Powder
 
 item.fluxindustry.rubbertree_sap.name=Rubbertree Sap
 item.fluxindustry.rubber_plate.name=Rubber
+
+item.fluxindustry.pellets_lithium.name=Lithium Hydroxide
+item.fluxindustry.salt_sodium.name=Sodium Chloride
+item.fluxindustry.salt_potassium.name=Potassium Chloride
+item.fluxindustry.metal_lithium.name=Metallic Lithium
+item.fluxindustry.metal_sodium.name=Metallic Sodium
+item.fluxindustry.metal_potassium.name=Metallic Potassium
+item.fluxindustry.powder_sulfur.name=Sulfur
+
 item.fluxindustry.wrench_brass.name=Brass Wrench
 item.fluxindustry.treetap.name=Treetap
 

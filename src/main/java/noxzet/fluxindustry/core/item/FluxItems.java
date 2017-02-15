@@ -11,7 +11,7 @@ public class FluxItems {
 		ingotBasic = register(new ItemFluxMulti("ingot_basic", "ingot_", new String[] {"copper", "tin", "zinc", "aluminum", "lead", "bronze", "brass"}));
 		nuggetBasic = register(new ItemFluxMulti("nugget_basic", "nugget_", new String[] {"copper", "tin", "zinc", "aluminum", "lead", "bronze", "brass"}));
 		powderBasic = register(new ItemFluxMulti("powder_basic", "powder_", new String[] {"copper", "tin", "zinc", "aluminum", "lead", "bronze", "brass", "uranium", "iron", "gold", "granite", "diorite", "andesite"}));
-		materialBasic = register(new ItemFluxMulti("material_basic", "", new String[] {"rubbertree_sap", "rubber_plate"}));
+		materialBasic = register(new ItemFluxMulti("material_basic", "", new String[] {"rubbertree_sap", "rubber_plate", "pellets_lithium", "salt_sodium", "salt_potassium", "metal_lithium", "metal_sodium", "metal_potassium", "powder_sulfur"}));
 		batteryBasic = register(ItemFluxBattery.itemFluxBatteryBasic("battery_basic", "battery_"));
 		wrenchBrass = register(new ItemFluxWrench("wrench_brass"));
 		treetap = register(new ItemTreetap("treetap"));

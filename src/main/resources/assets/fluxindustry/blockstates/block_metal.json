@@ -8,37 +8,37 @@
 	},
     "variants": {
         "variant": {
-			"copper": {
+			0: {
 				"textures": {
 					"all": "fluxindustry:blocks/block_copper"
 				}
 			},
-			"tin": {
+			1: {
 				"textures": {
 					"all": "fluxindustry:blocks/block_tin"
 				}
 			},
-			"zinc": {
+			2: {
 				"textures": {
 					"all": "fluxindustry:blocks/block_zinc"
 				}
 			},
-			"aluminum": {
+			3: {
 				"textures": {
 					"all": "fluxindustry:blocks/block_aluminum"
 				}
 			},
-			"lead": {
+			4: {
 				"textures": {
 					"all": "fluxindustry:blocks/block_lead"
 				}
 			},
-			"bronze": {
+			5: {
 				"textures": {
 					"all": "fluxindustry:blocks/block_bronze"
 				}
 			},
-			"brass": {
+			6: {
 				"textures": {
 					"all": "fluxindustry:blocks/block_brass"
 				}

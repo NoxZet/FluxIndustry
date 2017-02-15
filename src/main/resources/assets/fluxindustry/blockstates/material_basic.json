@@ -17,6 +17,41 @@
 				"textures": {
 					"item": "fluxindustry:items/rubber_plate"
 				}
+			},
+			"pellets_lithium": {
+				"textures": {
+					"item": "fluxindustry:items/pellets_lithium"
+				}
+			},
+			"salt_sodium": {
+				"textures": {
+					"item": "fluxindustry:items/salt_sodium"
+				}
+			},
+			"salt_potassium": {
+				"textures": {
+					"item": "fluxindustry:items/salt_potassium"
+				}
+			},
+			"metal_lithium": {
+				"textures": {
+					"item": "fluxindustry:items/metal_lithium"
+				}
+			},
+			"metal_sodium": {
+				"textures": {
+					"item": "fluxindustry:items/metal_sodium"
+				}
+			},
+			"metal_potassium": {
+				"textures": {
+					"item": "fluxindustry:items/metal_potassium"
+				}
+			},
+			"powder_sulfur": {
+				"textures": {
+					"item": "fluxindustry:items/powder_sulfur"
+				}
 			}
 		}
     }

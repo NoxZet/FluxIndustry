@@ -19,7 +19,7 @@ public class FluxBlocks {
 	{
 		oreBasic = register(new BlockOreBasic("ore_basic"));
 		blockMetal = register(new BlockMetalBasic("block_metal"));
-		blockMachine = register(new BlockFlux(Material.IRON, "block_machine"));
+		blockMachine = register(new BlockMachine("block_machine"));
 		treetapBlock = registerWithoutItemBlock(new BlockTreetap("treetap_block"));
 		fluxCable = registerWithoutItemBlock(new BlockFluxCable("flux_cable"));
 		generatorCoal = register(new BlockGeneratorCoal("generator_coal"));

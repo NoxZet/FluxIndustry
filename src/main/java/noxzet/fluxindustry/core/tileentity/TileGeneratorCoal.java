@@ -41,7 +41,6 @@ public class TileGeneratorCoal extends TileElectricInventory {
 	@Override
 	public void update()
 	{
-		super.update();
 		if (!world.isRemote)
 		{
 			if (fuelLevel>0)
@@ -70,7 +69,12 @@ public class TileGeneratorCoal extends TileElectricInventory {
 				container.changePower(-energy);
 				this.markDirty();
 			}
+			if (fuelLevel>0)
+				isLit = true;
+			else
+				isLit = false;
 		}
+		super.update();
 	}
 	
 	public static int getFuelBurnTime(ItemStack stack)

@@ -16,6 +16,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import noxzet.fluxindustry.api.energy.IFluxIndustryAPI;
+import noxzet.fluxindustry.core.block.electric.BlockElectric;
 import noxzet.fluxindustry.core.energy.EnumEnergyHandling;
 import noxzet.fluxindustry.core.energy.FluxEnergyConsumer;
 import noxzet.fluxindustry.core.energy.FluxEnergyContainer;
@@ -30,6 +31,7 @@ public class TileElectric extends TileEntityFlux implements ICapabilityProvider,
 	protected FluxEnergyConsumer containerConsumer;
 	private boolean[] doesSideProduce = {false, false, false, false, false, false};
 	private boolean[] doesSideConsume = {false, false, false, false, false, false};
+	protected boolean isLitHold = false, isLit = false;
 	protected String fluxName = "unknown";
 	protected boolean fluxIsGenerator = false, fluxIsFuelPowered = false, fluxIsMachine = false;
 	protected int fluxCriticalTemperature = -1;
@@ -67,6 +69,12 @@ public class TileElectric extends TileEntityFlux implements ICapabilityProvider,
 	{
 		if (!world.isRemote)
 		{
+			if (world.getBlockState(pos).getValue(BlockElectric.LIT)!=isLit)
+			{
+				this.dontRefresh();
+				world.setBlockState(pos, world.getBlockState(pos).withProperty(BlockElectric.LIT, isLit), 2);
+				world.markBlockRangeForRenderUpdate(pos, pos);
+			}
 			container.update();
 			EnumFacing dir, dirOpposite;
 			TileEntity tile;
@@ -106,6 +114,11 @@ public class TileElectric extends TileEntityFlux implements ICapabilityProvider,
 				}
 			}
 		}
+	}
+	
+	public boolean getIsLit()
+	{
+		return isLit;
 	}
 	
 	@Override

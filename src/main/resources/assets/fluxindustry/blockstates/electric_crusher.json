@@ -3,13 +3,13 @@
 	"defaults": {
 		"model": "cube",
 		"textures": {
-			"particle": "fluxindustry:blocks/block_machine",
-			"down": "fluxindustry:blocks/block_machine",
+			"particle": "fluxindustry:blocks/block_machine_basic",
+			"down": "fluxindustry:blocks/block_machine_basic",
 			"up": "fluxindustry:blocks/electric_crusher_top",
 			"north": "fluxindustry:blocks/electric_crusher_front",
-			"south": "fluxindustry:blocks/block_machine",
-			"west": "fluxindustry:blocks/block_machine",
-			"east": "fluxindustry:blocks/block_machine"
+			"south": "fluxindustry:blocks/block_machine_basic",
+			"west": "fluxindustry:blocks/block_machine_basic",
+			"east": "fluxindustry:blocks/block_machine_basic"
 		}
 	},
 	"variants": {
@@ -29,6 +29,15 @@
 			},
 			"east": {
 				"y": 90
+			}
+		},
+		"lit": {
+			"false": {
+			},
+			"true": {
+				"textures": {
+					"north": "fluxindustry:blocks/electric_crusher_front_lit"
+				}
 			}
 		}
 	}

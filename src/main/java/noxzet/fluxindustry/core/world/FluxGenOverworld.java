@@ -26,12 +26,12 @@ public class FluxGenOverworld implements IWorldGenerator {
 
 	private void generateOverworld(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
-		generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.OreVariant.COPPER), world, random, chunkX*16, chunkZ*16, 5, 96, 10, 16);
-		generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.OreVariant.TIN), world, random, chunkX*16, chunkZ*16, 5, 96, 7, 15);
-		generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.OreVariant.ZINC), world, random, chunkX*16, chunkZ*16, 5, 60, 11, 9);
-		generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.OreVariant.ALUMINUM), world, random, chunkX*16, chunkZ*16, 5, 75, 8, 10);
-		generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.OreVariant.LEAD), world, random, chunkX*16, chunkZ*16, 20, 64, 6, 6);
-		generateOreCustom(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.OreVariant.URANIUM), world, random, chunkX*16, chunkZ*16, 5, 37, 2, 3);
+		generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.COPPER), world, random, chunkX*16, chunkZ*16, 5, 96, 10, 16);
+		generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.TIN), world, random, chunkX*16, chunkZ*16, 5, 96, 7, 15);
+		generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.ZINC), world, random, chunkX*16, chunkZ*16, 5, 60, 11, 9);
+		generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.ALUMINUM), world, random, chunkX*16, chunkZ*16, 5, 75, 8, 10);
+		generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.LEAD), world, random, chunkX*16, chunkZ*16, 20, 64, 6, 6);
+		generateOreCustom(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.URANIUM), world, random, chunkX*16, chunkZ*16, 5, 37, 2, 3);
 	}
 	
 	private void generateOre(IBlockState ore, World world, Random random, int x, int z, int minY, int maxY, int maxSize, int chance)

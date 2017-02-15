@@ -14,25 +14,20 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import noxzet.fluxindustry.core.FluxIndustry;
 
-public class BlockMetalBasic extends BlockFluxMulti implements IBlockFluxMulti {
+public class BlockMachine extends BlockFluxMulti implements IBlockFluxMulti {
 
-	public static int COPPER = 0;
-	public static int TIN = 1;
-	public static int ZINC = 2;
-	public static int ALUMINUM = 3;
-	public static int LEAD = 4;
-	public static int BRONZE = 5;
-	public static int BRASS = 6;
-	public static int[] level = {1, 1, 1, 2, 2, 1, 1};
-	public static String[] variant = {"copper", "tin", "zinc", "aluminum", "lead", "bronze", "brass"};
+	public static int BASIC = 0;
+	public static int PURPLE = 1;
+	public static String[] variant = {"basic", "purple"};
 	public static PropertyInteger VARIANT = PropertyInteger.create("variant", 0, variant.length-1);
 	
-	public BlockMetalBasic(String unlocalizedName)
+	public BlockMachine(String unlocalizedName)
 	{
 		super(Material.IRON, unlocalizedName);
 		this.setSoundType(SoundType.METAL);
 		setVariants(variant);
-		setGroupName("block_");
+		setGroupName("block_machine_");
+		this.setHarvestLevel("pickaxe", 1);
 	}
 
 	@Override
@@ -45,18 +40,6 @@ public class BlockMetalBasic extends BlockFluxMulti implements IBlockFluxMulti {
 	public int getVariantMaxValue()
 	{
 		return variant.length;
-	}
-	
-	@Override
-	public String getHarvestTool(IBlockState state)
-	{
-		return "pickaxe";
-	}
-	
-	@Override
-	public int getHarvestLevel(IBlockState state)
-	{
-		return level[getMetaWithBounds(state.getValue(VARIANT), variant.length)];
 	}
 	
 }
