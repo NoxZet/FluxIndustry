@@ -12,6 +12,7 @@ import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.energy.CapabilityEnergy;
 import noxzet.fluxindustry.core.energy.FluxCableConsumer;
 import noxzet.fluxindustry.core.energy.FluxCableContainer;
+import noxzet.fluxindustry.core.energy.FluxUniversalProducer;
 import noxzet.fluxindustry.core.energy.IFluxCable;
 
 public class TileFluxCable extends TileEntityFlux implements IFluxCable, ITickable, cofh.api.energy.IEnergyReceiver {
@@ -121,7 +122,7 @@ public class TileFluxCable extends TileEntityFlux implements IFluxCable, ITickab
 		if (tile instanceof cofh.api.energy.IEnergyProvider)
 		{
 			cofh.api.energy.IEnergyProvider provider = (cofh.api.energy.IEnergyProvider) tile;
-			return consumer[facing.getIndex()].receiveRF(Tesla, simulated, provider);
+			return (int)consumer[facing.getIndex()].givePower(FluxUniversalProducer.COFH, Tesla, simulated);
 		}
 		return 0;
 	}

@@ -27,6 +27,7 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
 	public ItemFluxBattery(String unlocalizedName)
 	{
 		super(unlocalizedName);
+		this.setHasSubtypes(true);
 	}
 	
 	public ItemFluxBattery(String unlocalizedName, String group, int[] capacity, short[] capacityGrade, String[] name, boolean[] chargeable)
