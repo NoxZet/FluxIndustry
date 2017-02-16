@@ -27,10 +27,7 @@ public class FluxCableConsumer implements ITeslaConsumer, IEnergyStorage {
 		return entity.getWorld().getTileEntity(entity.getPos().offset(facing));
 	}
 	
-	// Tesla API Energy
-	
-	@Override
-	public long givePower(long Tesla, boolean simulated)
+	public long givePower(int mode, long Tesla, boolean simulated)
 	{
 		if (!simulated)
 		{
@@ -41,7 +38,7 @@ public class FluxCableConsumer implements ITeslaConsumer, IEnergyStorage {
 					producer = null;
 				else
 				{
-					producer = new FluxUniversalProducer((ITeslaProducer)getSource().getCapability(TeslaCapabilities.CAPABILITY_PRODUCER, facing.getOpposite()));
+					producer = new FluxUniversalProducer(mode, entity.getWorld(), entity.getPos().offset(facing), facing);
 					container.giveEnergyCable(Tesla, Tesla, simulated, producer, facing.getIndex());
 				}
 			}
@@ -50,45 +47,20 @@ public class FluxCableConsumer implements ITeslaConsumer, IEnergyStorage {
 		return 0;
 	}
 	
+	// Tesla API Energy
+	
+	@Override
+	public long givePower(long Tesla, boolean simulated)
+	{
+		return givePower(FluxUniversalProducer.TESLA, Tesla, simulated);
+	}
+	
 	// Minecraft Forge Energy
 	
 	@Override
 	public int receiveEnergy(int Tesla, boolean simulated)
 	{
-		if (!simulated)
-		{
-			if (Tesla == lastEnergy && Tesla>=container.getChargeMin())
-			{
-				FluxUniversalProducer producer;
-				if (simulated)
-					producer = null;
-				else
-					producer = new FluxUniversalProducer((IEnergyStorage)getSource().getCapability(CapabilityEnergy.ENERGY, facing.getOpposite()));
-				container.giveEnergyCable(Tesla, Tesla, simulated, producer, facing.getIndex());
-			}
-			lastEnergy = Tesla;
-		}
-		return 0;
-	}
-	
-	// RF API energy (custom wrap)
-	
-	public int receiveRF(int Tesla, boolean simulated, cofh.api.energy.IEnergyProvider rftile)
-	{
-		if (!simulated)
-		{
-			if (Tesla == lastEnergy && Tesla>=container.getChargeMin())
-			{
-				FluxUniversalProducer producer;
-				if (simulated)
-					producer = null;
-				else
-					producer = new FluxUniversalProducer(rftile, facing.getOpposite());
-				container.giveEnergyCable(Tesla, Tesla, simulated, producer, facing.getIndex());
-			}
-			lastEnergy = Tesla;
-		}
-		return 0;
+		return (int)givePower(FluxUniversalProducer.FORGE, Tesla, simulated);
 	}
 	
 	@Override

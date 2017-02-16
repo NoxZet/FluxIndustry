@@ -37,7 +37,7 @@ public class GeneratorCoalContainerGui extends FluxContainerGui {
 		}
 		else
 		{
-			int energyHeight = (int) Math.ceil(((float)storedPower)/((float)capacity)*40);
+			int energyHeight = (int) Math.round(((float)storedPower)/((float)capacity)*40);
 			drawTexturedModalRect(guiLeft+94, guiTop+65-energyHeight, 176, 56-energyHeight, 22, energyHeight);
 		}
 	}

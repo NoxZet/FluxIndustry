@@ -28,7 +28,7 @@ public class ElectricFurnaceContainerGui extends FluxContainerGui {
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		if (energyLevel>0)
 		{
-			int energyHeight = (int) Math.floor(((float)energyLevel)/((float)energyMax)*14);
+			int energyHeight = (int) Math.round(((float)energyLevel)/((float)energyMax)*14);
 			drawTexturedModalRect(guiLeft+57, guiTop+50-energyHeight, 176, 14-energyHeight, 14, energyHeight);
 		}
 		if (progress>0)
