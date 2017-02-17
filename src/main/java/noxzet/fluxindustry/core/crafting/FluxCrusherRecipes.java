@@ -11,9 +11,9 @@ public class FluxCrusherRecipes {
 
 	public static int neededCount = 1;
 	private static final FluxCrusherRecipes INSTANCE = new FluxCrusherRecipes();
-	private static final Map<String, ItemStack> oreDictCrushingRecipes = new HashMap<String, ItemStack>();
-	private static final Map<ItemStack, ItemStack> nonDictCrushingRecipes = new HashMap<ItemStack, ItemStack>();
-	private static final Map<ItemStack, ItemStack> crushingRecipes = new HashMap<ItemStack, ItemStack>();
+	private static final Map<String, ItemStack> oreDictCrushingRecipes = new HashMap<>();
+	private static final Map<ItemStack, ItemStack> nonDictCrushingRecipes = new HashMap<>();
+	private static final Map<ItemStack, ItemStack> crushingRecipes = new HashMap<>();
 
 	public static FluxCrusherRecipes instance()
 	{
@@ -47,11 +47,6 @@ public class FluxCrusherRecipes {
 			}
 		}
 		return ItemStack.EMPTY;
-	}
-	
-	public void registerRecipe(ItemStack input, ItemStack result)
-	{
-		registerRecipe(input, result, true);
 	}
 	
 	public void registerRecipe(ItemStack input, ItemStack result, boolean isItemDict)

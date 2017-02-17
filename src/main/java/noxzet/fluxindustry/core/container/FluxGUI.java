@@ -5,6 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
+import noxzet.fluxindustry.core.tileentity.TileCentrifuge;
 import noxzet.fluxindustry.core.tileentity.TileElectricCrusher;
 import noxzet.fluxindustry.core.tileentity.TileElectricFurnace;
 import noxzet.fluxindustry.core.tileentity.TileElectricInventory;
@@ -23,6 +24,9 @@ public class FluxGUI implements IGuiHandler {
 		}
 		if (tile instanceof TileElectricCrusher) {
 			return new ElectricCrusherContainer(player.inventory, (TileElectricCrusher) tile);
+		}
+		if (tile instanceof TileCentrifuge) {
+			return new CentrifugeContainer(player.inventory, (TileCentrifuge) tile);
 		}
 		if (tile instanceof TileElectricInventory) {
 			return new FluxContainer(player.inventory, (TileElectricInventory) tile);
@@ -44,6 +48,10 @@ public class FluxGUI implements IGuiHandler {
 		if (tile instanceof TileElectricCrusher) {
 			TileElectricCrusher tileElectric = (TileElectricCrusher) tile;
 			return new ElectricCrusherContainerGui(tileElectric, new ElectricCrusherContainer(player.inventory, tileElectric));
+		}
+		if (tile instanceof TileCentrifuge) {
+			TileCentrifuge tileElectric = (TileCentrifuge) tile;
+			return new CentrifugeContainerGui(tileElectric, new CentrifugeContainer(player.inventory, tileElectric));
 		}
 		if (tile instanceof TileElectricInventory) {
 			TileElectricInventory tileElectric = (TileElectricInventory) tile;

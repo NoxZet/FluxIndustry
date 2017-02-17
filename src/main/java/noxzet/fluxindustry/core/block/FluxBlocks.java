@@ -2,6 +2,7 @@ package noxzet.fluxindustry.core.block;
 
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import noxzet.fluxindustry.core.block.electric.BlockCentrifuge;
 import noxzet.fluxindustry.core.block.electric.BlockElectricCrusher;
 import noxzet.fluxindustry.core.block.electric.BlockElectricFurnace;
 import noxzet.fluxindustry.core.block.electric.BlockFluxCable;
@@ -12,7 +13,7 @@ import noxzet.fluxindustry.core.item.ItemBlockMulti;
 public class FluxBlocks {
 	
 	public static BlockFlux oreBasic, blockMetal, blockMachine, treetapBlock, fluxCable,
-			generatorCoal, electricFurnace, electricCrusher;
+			generatorCoal, electricFurnace, electricCrusher, centrifuge;
 	
 	public static void init()
 	{
@@ -24,6 +25,7 @@ public class FluxBlocks {
 		generatorCoal = register(new BlockGeneratorCoal("generator_coal"));
 		electricFurnace = register(new BlockElectricFurnace("electric_furnace"));
 		electricCrusher = register(new BlockElectricCrusher("electric_crusher"));
+		centrifuge = register(new BlockCentrifuge("centrifuge"));
 	}
 	
 	public static void postInit()
@@ -35,6 +37,7 @@ public class FluxBlocks {
 		generatorCoal.setCreativeTab(FluxCreativeTabs.FIMACHINES);
 		electricFurnace.setCreativeTab(FluxCreativeTabs.FIMACHINES);
 		electricCrusher.setCreativeTab(FluxCreativeTabs.FIMACHINES);
+		centrifuge.setCreativeTab(FluxCreativeTabs.FIMACHINES);
 	}
 	
 	public static BlockFlux register (BlockFlux block, ItemBlock itemBlock)

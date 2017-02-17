@@ -28,6 +28,7 @@ public class FluxCrafting {
 	public static void postInit()
 	{
 		initCrusher();
+		initCentrifuge();
 	}
 	
 	private static void initMetals()
@@ -147,6 +148,19 @@ public class FluxCrafting {
 		FluxCrusherRecipes.instance().registerOreDictRecipe("stoneGranite", new ItemStack(FluxItems.powderBasic, 1, 10));
 		FluxCrusherRecipes.instance().registerOreDictRecipe("stoneDiorite", new ItemStack(FluxItems.powderBasic, 1, 11));
 		FluxCrusherRecipes.instance().registerOreDictRecipe("stoneAndesite", new ItemStack(FluxItems.powderBasic, 1, 12));
+		FluxCrusherRecipes.instance().registerRecipe(new ItemStack(Blocks.STONE, 1, 0), new ItemStack(FluxItems.powderBasic, 1, 13), false);
+	}
+	
+	public static void initCentrifuge()
+	{
+		FluxCentrifugeRecipes.instance().registerOreDictRecipe("dustGranite", new FluxCentrifugeRecipe(
+				new ItemStack(Blocks.STONE, 1, 0), new ItemStack[]{new ItemStack(FluxItems.materialBasic, 1, 8),
+						new ItemStack(FluxItems.materialBasic, 1, 2), new ItemStack(FluxItems.powderBasic, 1, 13)},
+				new int[]{4, 2, 4}));
+		FluxCentrifugeRecipes.instance().registerOreDictRecipe("dustAndesite", new FluxCentrifugeRecipe(
+				new ItemStack(Blocks.STONE, 1, 0), new ItemStack[]{new ItemStack(FluxItems.materialBasic, 1, 3),
+						new ItemStack(FluxItems.materialBasic, 1, 4), new ItemStack(FluxItems.powderBasic, 1, 13)},
+				new int[]{3, 2, 5}));
 	}
 	
 	public static String camelCase(String name)

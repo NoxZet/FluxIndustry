@@ -88,6 +88,7 @@ public class TileElectricInventory extends TileElectric {
 	
 	public long slotGiveEnergy(int slot, long Tesla, boolean simulated)
 	{
+		long amount = 0;
 		if (Tesla > 0 && slot < inventory.getSlots())
 		{
 			ItemStack stack = inventory.getStackInSlot(slot);
@@ -97,36 +98,39 @@ public class TileElectricInventory extends TileElectric {
 				{
 					stack = stack.copy();
 					ITeslaConsumer capability = (ITeslaConsumer)stack.getCapability(TeslaCapabilities.CAPABILITY_CONSUMER, null);
-					long amount = capability.givePower(Tesla, simulated);
+					amount = capability.givePower(Tesla, simulated);
 					if (!simulated)
 						inventory.setStackInSlot(slot, stack);
-					return amount;
 				}
 				if (stack.hasCapability(CapabilityEnergy.ENERGY, null))
 				{
 					stack = stack.copy();
 					IEnergyStorage capability = (IEnergyStorage)stack.getCapability(CapabilityEnergy.ENERGY, null);
-					long amount = capability.receiveEnergy((int)Tesla, simulated);
+					amount = capability.receiveEnergy((int)Tesla, simulated);
 					if (!simulated)
 						inventory.setStackInSlot(slot, stack);
-					return amount;
 				}
 				else if (stack.getItem() instanceof cofh.api.energy.IEnergyContainerItem)
 				{
 					stack = stack.copy();
 					cofh.api.energy.IEnergyContainerItem container = (cofh.api.energy.IEnergyContainerItem) stack.getItem();
-					long amount = container.receiveEnergy(stack, (int)Tesla, simulated);
+					amount = container.receiveEnergy(stack, (int)Tesla, simulated);
 					if (!simulated)
 						inventory.setStackInSlot(slot, stack);
-					return amount;
 				}
 			}
 		}
-		return 0;
+		if (amount > 0)
+		{
+			container.changePower(-amount);
+			this.markDirty();
+		}
+		return amount;
 	}
 	
 	public long slotTakeEnergy(int slot, long Tesla, boolean simulated)
 	{
+		long amount = 0;
 		if (Tesla > 0 && slot < inventory.getSlots())
 		{
 			ItemStack stack = inventory.getStackInSlot(slot);
@@ -136,32 +140,34 @@ public class TileElectricInventory extends TileElectric {
 				{
 					stack = stack.copy();
 					ITeslaProducer capability = (ITeslaProducer)stack.getCapability(TeslaCapabilities.CAPABILITY_PRODUCER, null);
-					long amount = capability.takePower(Tesla, simulated);
+					amount = capability.takePower(Tesla, simulated);
 					if (!simulated)
 						inventory.setStackInSlot(slot, stack);
-					return amount;
 				}
 				if (stack.hasCapability(CapabilityEnergy.ENERGY, null))
 				{
 					stack = stack.copy();
 					IEnergyStorage capability = (IEnergyStorage)stack.getCapability(CapabilityEnergy.ENERGY, null);
-					long amount = capability.extractEnergy((int)Tesla, simulated);
+					amount = capability.extractEnergy((int)Tesla, simulated);
 					if (!simulated)
 						inventory.setStackInSlot(slot, stack);
-					return amount;
 				}
 				else if (stack.getItem() instanceof cofh.api.energy.IEnergyContainerItem)
 				{
 					stack = stack.copy();
 					cofh.api.energy.IEnergyContainerItem container = (cofh.api.energy.IEnergyContainerItem) stack.getItem();
-					long amount = container.extractEnergy(stack, (int)Tesla, simulated);
+					amount = container.extractEnergy(stack, (int)Tesla, simulated);
 					if (!simulated)
 						inventory.setStackInSlot(slot, stack);
-					return amount;
 				}
 			}
 		}
-		return 0;
+		if (amount > 0)
+		{
+			container.changePower(amount);
+			this.markDirty();
+		}
+		return amount;
 	}
 	
 	@Override
