@@ -1,0 +1,47 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cube",
+		"textures": {
+			"particle": "fluxindustry:blocks/block_machine_basic",
+			"down": "fluxindustry:blocks/block_machine_basic",
+			"up": "fluxindustry:blocks/centrifuge_top",
+			"north": "fluxindustry:blocks/centrifuge_front",
+			"south": "fluxindustry:blocks/centrifuge_side",
+			"west": "fluxindustry:blocks/centrifuge_side",
+			"east": "fluxindustry:blocks/centrifuge_side"
+		}
+	},
+	"variants": {
+		"facing": {
+			"down": {
+			},
+			"up": {
+			},
+			"north": {
+				"y": 0
+			},
+			"south": {
+				"y": 180
+			},
+			"west": {
+				"y": 270
+			},
+			"east": {
+				"y": 90
+			}
+		},
+		"lit": {
+			"false": {
+			},
+			"true": {
+				"textures": {
+					"north": "fluxindustry:blocks/centrifuge_front_lit",
+					"south": "fluxindustry:blocks/centrifuge_side_lit",
+					"west": "fluxindustry:blocks/centrifuge_side_lit",
+					"east": "fluxindustry:blocks/centrifuge_side_lit"
+				}
+			}
+		}
+	}
+}

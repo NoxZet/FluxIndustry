@@ -14,9 +14,15 @@ import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.ItemStack;
 import noxzet.fluxindustry.core.block.FluxBlocks;
+import noxzet.fluxindustry.core.container.CentrifugeContainerGui;
 import noxzet.fluxindustry.core.container.ElectricCrusherContainerGui;
 import noxzet.fluxindustry.core.container.ElectricFurnaceContainerGui;
+import noxzet.fluxindustry.core.crafting.FluxCentrifugeRecipe;
+import noxzet.fluxindustry.core.crafting.FluxCentrifugeRecipes;
 import noxzet.fluxindustry.core.crafting.FluxCrusherRecipes;
+import noxzet.fluxindustry.core.jei.centrifuge.CentrifugeRecipe;
+import noxzet.fluxindustry.core.jei.centrifuge.CentrifugeRecipeCategory;
+import noxzet.fluxindustry.core.jei.centrifuge.CentrifugeRecipeHandler;
 import noxzet.fluxindustry.core.jei.crusher.CrusherRecipe;
 import noxzet.fluxindustry.core.jei.crusher.CrusherRecipeCategory;
 import noxzet.fluxindustry.core.jei.crusher.CrusherRecipeHandler;
@@ -29,12 +35,15 @@ public class FluxJeiPlugin extends BlankModPlugin {
 		IJeiHelpers jeiHelpers = registry.getJeiHelpers();
 		IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 		registerCrusherRecipes(registry);
-		registry.addRecipeCategories(new CrusherRecipeCategory(guiHelper));
-		registry.addRecipeHandlers(new CrusherRecipeHandler(jeiHelpers));
+		registerCentrifugeRecipes(registry);
+		registry.addRecipeCategories(new CrusherRecipeCategory(guiHelper), new CentrifugeRecipeCategory(guiHelper));
+		registry.addRecipeHandlers(new CrusherRecipeHandler(jeiHelpers), new CentrifugeRecipeHandler(jeiHelpers));
 		registry.addRecipeClickArea(ElectricFurnaceContainerGui.class, 78, 35, 26, 15, VanillaRecipeCategoryUid.SMELTING);
 		registry.addRecipeClickArea(ElectricCrusherContainerGui.class, 71, 35, 38, 15, FluxCategoryUids.CRUSHER);
-		registry.addRecipeCategoryCraftingItem(new ItemStack(FluxBlocks.electricCrusher), FluxCategoryUids.CRUSHER);
+		registry.addRecipeClickArea(CentrifugeContainerGui.class, 76, 33, 18, 20, FluxCategoryUids.CENTRIFUGE);
 		registry.addRecipeCategoryCraftingItem(new ItemStack(FluxBlocks.electricFurnace), VanillaRecipeCategoryUid.SMELTING);
+		registry.addRecipeCategoryCraftingItem(new ItemStack(FluxBlocks.electricCrusher), FluxCategoryUids.CRUSHER);
+		registry.addRecipeCategoryCraftingItem(new ItemStack(FluxBlocks.centrifuge), FluxCategoryUids.CENTRIFUGE);
 	}
 	
 	public void registerCrusherRecipes(@Nonnull IModRegistry registry)
@@ -49,6 +58,22 @@ public class FluxJeiPlugin extends BlankModPlugin {
 		for (Map.Entry<ItemStack, ItemStack> entry : nonDictRecipeMap.entrySet())
 		{
 			recipeCollection.add(new CrusherRecipe(entry.getKey(), entry.getValue()));
+		}
+		registry.addRecipes(recipeCollection);
+	}
+	
+	public void registerCentrifugeRecipes(@Nonnull IModRegistry registry)
+	{
+		Map<String, FluxCentrifugeRecipe> recipeMap = FluxCentrifugeRecipes.getOreDictCentrifugeRecipes();
+		Map<ItemStack, FluxCentrifugeRecipe> nonDictRecipeMap = FluxCentrifugeRecipes.getNonDictCentrifugeRecipes();
+		List<CentrifugeRecipe> recipeCollection = new ArrayList<CentrifugeRecipe>();
+		for (Map.Entry<String, FluxCentrifugeRecipe> entry : recipeMap.entrySet())
+		{
+			recipeCollection.add(new CentrifugeRecipe(entry.getKey(), entry.getValue()));
+		}
+		for (Map.Entry<ItemStack, FluxCentrifugeRecipe> entry : nonDictRecipeMap.entrySet())
+		{
+			recipeCollection.add(new CentrifugeRecipe(entry.getKey(), entry.getValue()));
 		}
 		registry.addRecipes(recipeCollection);
 	}

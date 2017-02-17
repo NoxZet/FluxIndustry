@@ -8,12 +8,13 @@ import noxzet.fluxindustry.core.energy.EnumEnergyHandling;
 
 public class TileElectricMachine extends TileElectricInventory {
 
-	private int burnProgress;
-	private ItemStack previousStack = ItemStack.EMPTY;
-	private ItemStack previousResultStack = ItemStack.EMPTY;
-	private int teslaPerTick = 14;
-	private int burnTimeNeeded = 120;
+	protected int burnProgress, outputs;
+	protected ItemStack previousStack;
+	protected ItemStack[] previousResultStack;
+	protected int teslaPerTick = 14;
+	protected int burnTimeNeeded = 120;
 	public int neededCount = 1;
+	public int chosenResult = -1;
 	public static final int FIELD_ENERGY_CAPACITY = 0;
 	public static final int FIELD_ENERGY_STORED = 1;
 	public static final int FIELD_BURN_TIME = 2;
@@ -21,13 +22,16 @@ public class TileElectricMachine extends TileElectricInventory {
 	
 	public TileElectricMachine()
 	{
-		this(0, 2000, 40, 0);
+		this(0, 2000, 40, 0, 3);
 	}
-	
-	public TileElectricMachine(long stored, long capacity, long inputRate, long outputRate)
+		
+	public TileElectricMachine(long stored, long capacity, long inputRate, long outputRate, int slots)
 	{
-		super(stored, capacity, inputRate, outputRate, 3);
+		super(stored, capacity, inputRate, outputRate, slots);
 		burnProgress = 0;
+		outputs = slots-2;
+		this.previousResultStack = new ItemStack[outputs];
+		this.setPreviousEmpty();
 		this.fluxIsMachine = true;
 		this.setAllEnergyHandling(EnumEnergyHandling.INPUT);
 	}
@@ -37,66 +41,110 @@ public class TileElectricMachine extends TileElectricInventory {
 	{
 		if (!world.isRemote)
 		{
+			this.slotTakeEnergy(1, container.getMaxInputTick(false), false);
 			ItemStack thisStack = inventory.getStackInSlot(0).copy();
-			long energy = this.slotTakeEnergy(1, container.getMaxInputTick(false), false);
-			if (energy>0)
-			{
-				container.changePower(energy);
-				this.markDirty();
-			}
 			if (!thisStack.isEmpty())
 			{
-				ItemStack resultStack = getResult(thisStack);
-				ItemStack rightStack = inventory.getStackInSlot(2).copy();
-				if (!resultStack.isEmpty())
+				ItemStack[] resultStack = getResult(thisStack);
+				ItemStack[] rightStack = new ItemStack[outputs];
+				for (int i = 0; i < outputs; i++)
+					rightStack[i] = inventory.getStackInSlot(2+i).copy();
+				if (!resultStack[0].isEmpty())
 				{
-					if (rightStack.isEmpty() || (ItemStack.areItemsEqual(resultStack, rightStack)
-							&& rightStack.getCount()+resultStack.getCount()<=rightStack.getMaxStackSize()))
+					boolean reset = !ItemStack.areItemsEqual(thisStack, previousStack);
+					for (int i = 0; i < outputs && reset == false; i++)
+						if (!rightStack[i].isEmpty() && !ItemStack.areItemsEqual(resultStack[i], previousResultStack[i]))
+							reset = true;
+					if (reset)
+						burnProgress = 0;
+					else if (burnProgress>=burnTimeNeeded)
 					{
-						if (!(ItemStack.areItemsEqual(thisStack, previousStack) && ItemStack.areItemsEqual(resultStack, previousResultStack)))
-							burnProgress = 0;
-						else if (burnProgress>=burnTimeNeeded)
+						thisStack.shrink(neededCount);
+						inventory.setStackInSlot(0, thisStack);
+						if (chosenResult < 0)
+							chosenResult++;
+						boolean process = true;
+						for (int i = 0; i < outputs && reset == false; i++)
+							if (rightStack[i].getCount()+resultStack[i].getCount() > rightStack[i].getMaxStackSize())
+								process = false;
+						if (process)
 						{
-							if (!rightStack.isEmpty())
-								resultStack.grow(rightStack.getCount());
-							thisStack.shrink(neededCount);
-							inventory.setStackInSlot(2, resultStack);
-							inventory.setStackInSlot(0, thisStack);
+							if (chosenResult >= 0)
+							{
+								if (rightStack[chosenResult].isEmpty())
+									inventory.setStackInSlot(2+chosenResult, resultStack[chosenResult].copy());
+								else
+								{
+									rightStack[chosenResult].grow(resultStack[chosenResult].getCount());
+									inventory.setStackInSlot(2+chosenResult, rightStack[chosenResult]);
+								}
+							}
 							burnProgress = 0;
-						}
-						if (container.getStoredPower()>=teslaPerTick)
-						{
-							container.changePower(-teslaPerTick);
-							burnProgress++;
+							chosenResult = -1;
 						}
 					}
-					else
-						burnProgress = 0;
+					if (burnProgress < burnTimeNeeded && container.getStoredPower()>=teslaPerTick)
+					{
+						container.changePower(-teslaPerTick);
+						burnProgress++;
+					}
 				}
 				else
 					burnProgress = 0;
-				previousStack = thisStack;
-				previousResultStack = resultStack;
+				this.setPrevious(thisStack, resultStack);
 			}
 			else
 			{
 				burnProgress = 0;
-				previousStack = ItemStack.EMPTY;
-				previousResultStack = ItemStack.EMPTY;
+				this.setPreviousEmpty();
 			}
 			this.markDirty();
-			// Render
-			if (burnProgress>0 && container.getStoredPower()>=teslaPerTick)
-			{
-				isLitHold = true;
-				isLit = true;
-			}
-			if (isLitHold==true)
-				isLitHold = false;
-			else
-				isLit = false;
+			machineRender();
 		}
 		super.update();
+	}
+	
+	protected void updateElectric()
+	{
+		super.update();
+	}
+	
+	protected void machineRender()
+	{
+		if (burnProgress>0 && container.getStoredPower()>=teslaPerTick)
+		{
+			isLitHold = true;
+			isLit = true;
+		}
+		if (isLitHold==true)
+			isLitHold = false;
+		else
+			isLit = false;
+	}
+	
+	protected void setPrevious(ItemStack stack, ItemStack[] resultStack)
+	{
+		this.previousStack = stack;
+		this.setPreviousResult(resultStack);
+	}
+	
+	protected void setPreviousResult(ItemStack[] resultStack)
+	{
+		int limit = Math.min(resultStack.length, outputs);
+		for (int i = 0; i < limit; i++)
+			this.previousResultStack[i] = resultStack[i].copy();
+	}
+	
+	protected void setPreviousEmpty()
+	{
+		previousStack = ItemStack.EMPTY;
+		this.setPreviousResultEmpty();
+	}
+	
+	protected void setPreviousResultEmpty()
+	{
+		for (int i = 0; i < outputs; i++)
+			this.previousResultStack[i] = ItemStack.EMPTY;
 	}
 	
 	@Override
@@ -132,8 +180,9 @@ public class TileElectricMachine extends TileElectricInventory {
 			burnProgress = compound.getInteger("burnProgress");
 		if (compound.hasKey("previousStack"))
 			previousStack = new ItemStack((NBTTagCompound)compound.getTag("previousStack"));
-		if (compound.hasKey("previousResultStack"))
-			previousResultStack = new ItemStack((NBTTagCompound)compound.getTag("previousResultStack"));
+		for (int i = 0; i < outputs; i++)
+			if (compound.hasKey("previousResultStack"+i))
+				previousResultStack[i] = new ItemStack((NBTTagCompound)compound.getTag("previousResultStack"+i));
 	}
 	
 	@Override
@@ -142,13 +191,14 @@ public class TileElectricMachine extends TileElectricInventory {
 		super.writeToNBT(compound);
 		compound.setInteger("burnProgress", burnProgress);
 		compound.setTag("previousStack", previousStack.serializeNBT());
-		compound.setTag("previousResultStack", previousResultStack.serializeNBT());
+		for (int i = 0; i < outputs; i++)
+			compound.setTag("previousResultStack"+i, previousResultStack[i].serializeNBT());
 		return compound;
 	}
 	
-	public ItemStack getResult(ItemStack stack)
+	public ItemStack[] getResult(ItemStack stack)
 	{
-		return ItemStack.EMPTY;
+		return new ItemStack[]{ItemStack.EMPTY};
 	}
 	
 	public int getBurnProgress()

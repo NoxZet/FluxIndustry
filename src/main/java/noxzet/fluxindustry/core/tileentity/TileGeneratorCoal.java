@@ -31,6 +31,7 @@ public class TileGeneratorCoal extends TileElectricInventory {
 		fuelLevel = 0;
 		fuelMax = 0;
 		powerPerTick = 30;
+		this.fluxName = "generator_coal";
 		this.fluxIsGenerator = true;
 		this.fluxIsFuelPowered = true;
 		this.setAllEnergyHandling(EnumEnergyHandling.OUTPUT);
@@ -61,12 +62,7 @@ public class TileGeneratorCoal extends TileElectricInventory {
 					inventory.setStackInSlot(1, stack);
 				}
 			}
-			long energy = this.slotGiveEnergy(0, container.getMaxOutputTick(false), false);
-			if (energy>0)
-			{
-				container.changePower(-energy);
-				this.markDirty();
-			}
+			this.slotGiveEnergy(0, container.getMaxOutputTick(false), false);
 			if (fuelLevel>0)
 				isLit = true;
 			else

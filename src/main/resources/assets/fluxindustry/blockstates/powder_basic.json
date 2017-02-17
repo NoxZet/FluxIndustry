@@ -72,6 +72,11 @@
 				"textures": {
 					"item": "fluxindustry:items/powder_andesite"
 				}
+			},
+			"stone": {
+				"textures": {
+					"item": "fluxindustry:items/powder_stone"
+				}
 			}
 		}		
     }

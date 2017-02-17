@@ -6,6 +6,7 @@ tile.fluxindustry.generator_coal.name=Coal Generator
 
 tile.fluxindustry.electric_furnace.name=Electric Furnace
 tile.fluxindustry.electric_crusher.name=Crusher
+tile.fluxindustry.centrifuge.name=Centrifuge
 
 tile.fluxindustry.ore_copper.name=Copper Ore
 tile.fluxindustry.ore_tin.name=Tin Ore
@@ -53,6 +54,7 @@ item.fluxindustry.powder_gold.name=Gold Powder
 item.fluxindustry.powder_granite.name=Granite Powder
 item.fluxindustry.powder_diorite.name=Diorite Powder
 item.fluxindustry.powder_andesite.name=Andesite Powder
+item.fluxindustry.powder_stone.name=Stone Powder
 
 item.fluxindustry.rubbertree_sap.name=Rubbertree Sap
 item.fluxindustry.rubber_plate.name=Rubber
