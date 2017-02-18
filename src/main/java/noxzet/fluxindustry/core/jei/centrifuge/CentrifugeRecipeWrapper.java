@@ -33,7 +33,7 @@ public class CentrifugeRecipeWrapper extends FluxRecipeWrapper<CentrifugeRecipe>
 		progress.draw(minecraft, 31, 18);
 		energy.draw(minecraft, 2, 20);
 		for (int i = 0; i <= 2; i++)
-			minecraft.fontRenderer.drawString(chance[i], 48, 5+18*i, 0x333333);
+			minecraft.fontRenderer.drawString(chance[i], 84, 5+18*i, 0x333333);
 	}
 	
 }

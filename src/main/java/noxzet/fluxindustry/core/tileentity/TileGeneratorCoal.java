@@ -47,7 +47,10 @@ public class TileGeneratorCoal extends TileElectricInventory {
 				fuelLevel--;
 				container.changePower(30);
 				this.markDirty();
+				isLit = true;
 			}
+			else
+				isLit = false;
 			if (fuelLevel<=0 && this.getStoredPower()<this.getCapacity())
 			{
 				int fuel = getFuelBurnTime(inventory.getStackInSlot(1));
@@ -63,10 +66,6 @@ public class TileGeneratorCoal extends TileElectricInventory {
 				}
 			}
 			this.slotGiveEnergy(0, container.getMaxOutputTick(false), false);
-			if (fuelLevel>0)
-				isLit = true;
-			else
-				isLit = false;
 		}
 		super.update();
 	}
