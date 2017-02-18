@@ -20,15 +20,15 @@ public class ElectricFurnaceContainerGui extends FluxContainerGui {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
-		long energyLevel = (int)tile.getStoredPower();
-		long energyMax = (int)tile.getCapacity();
+		long storedPower = tile.getFluxStoredPower();
+		long capacity = tile.getFluxMaxStoredPower();
 		int progress = tile.getBurnProgress();
 		int progressMax = tile.getBurnTimeNeeded();
 		mc.getTextureManager().bindTexture(background);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-		if (energyLevel>0)
+		if (storedPower>0)
 		{
-			int energyHeight = (int) Math.round(((float)energyLevel)/((float)energyMax)*14);
+			int energyHeight = (int) Math.round(((float)storedPower)/((float)capacity)*14);
 			drawTexturedModalRect(guiLeft+57, guiTop+50-energyHeight, 176, 14-energyHeight, 14, energyHeight);
 		}
 		if (progress>0)

@@ -43,7 +43,7 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
 	public static ItemFluxBattery itemFluxBatteryBasic(String unlocalizedName, String group) 
 	{
 		return new ItemFluxBattery(unlocalizedName, group,
-				new int[]{10000, 32000, 100000, 300000, 1200000},
+				new int[]{20000, 70000, 240000, 600000, 2000000},
 				new short[]{1, 1, 1, 1, 2},
 				new String[]{"basic", "redstone", "lead", "lithium", "quartz"},
 				new boolean[]{true, true, true, true, true});
