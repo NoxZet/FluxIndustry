@@ -97,7 +97,7 @@ public class BlockFluxCable extends BlockFlux implements ITileEntityClassProvide
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return this.getDefaultState().getValue(VARIANT).getMeta();
+		return state.getValue(VARIANT).getMeta();
 	}
 	
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
