@@ -89,7 +89,7 @@ public class BlockElectric extends BlockDirection implements ITileEntityClassPro
 	{
 		if (!world.isRemote)
 		{
-			int uuid = world.rand.nextInt(1000);
+			TileEntity entity = getTileEntity(world, pos);
 			if (player.getHeldItem(hand).getItem() instanceof IFluxIndustryWrench)
 			{
 				ItemStack stack = player.getHeldItem(hand);
@@ -97,10 +97,10 @@ public class BlockElectric extends BlockDirection implements ITileEntityClassPro
 				{
 					((TileElectric)world.getTileEntity(pos)).dontRefresh();
 					world.setBlockState(pos, state.withProperty(FACING, getFacing(pos, player)), 2);
+					((TileElectric)entity).onRotated();
 					return true;
 				}
 			}
-			TileEntity entity = getTileEntity(world, pos);
 			if (entity instanceof TileElectric)
 				return ((TileElectric)entity).onActivated(world, player, facing);
 			return false;

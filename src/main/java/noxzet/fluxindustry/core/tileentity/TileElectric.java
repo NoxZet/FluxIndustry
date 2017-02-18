@@ -295,6 +295,7 @@ public class TileElectric extends TileEntityFlux implements ICapabilityProvider,
 
 	public boolean onActivated(World world, EntityPlayer player, EnumFacing facing) { return false; }
 	public void onClicked(World world, EntityPlayer player) {}
+	public void onRotated() {};
 
 	@Override
 	public String getFluxName() {

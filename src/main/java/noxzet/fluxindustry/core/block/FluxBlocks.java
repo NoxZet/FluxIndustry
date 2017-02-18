@@ -5,6 +5,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import noxzet.fluxindustry.core.block.electric.BlockCentrifuge;
 import noxzet.fluxindustry.core.block.electric.BlockElectricCrusher;
 import noxzet.fluxindustry.core.block.electric.BlockElectricFurnace;
+import noxzet.fluxindustry.core.block.electric.BlockEnergyStorage;
 import noxzet.fluxindustry.core.block.electric.BlockFluxCable;
 import noxzet.fluxindustry.core.block.electric.BlockGeneratorCoal;
 import noxzet.fluxindustry.core.item.FluxCreativeTabs;
@@ -13,7 +14,9 @@ import noxzet.fluxindustry.core.item.ItemBlockMulti;
 public class FluxBlocks {
 	
 	public static BlockFlux oreBasic, blockMetal, blockMachine, treetapBlock, fluxCable,
-			generatorCoal, electricFurnace, electricCrusher, centrifuge;
+			generatorCoal, electricFurnace, electricCrusher, centrifuge,
+			energyStorageBasic;
+			
 	
 	public static void init()
 	{
@@ -26,6 +29,7 @@ public class FluxBlocks {
 		electricFurnace = register(new BlockElectricFurnace("electric_furnace"));
 		electricCrusher = register(new BlockElectricCrusher("electric_crusher"));
 		centrifuge = register(new BlockCentrifuge("centrifuge"));
+		energyStorageBasic = register(new BlockEnergyStorage("energy_storage_basic"));
 	}
 	
 	public static void postInit()
@@ -38,6 +42,7 @@ public class FluxBlocks {
 		electricFurnace.setCreativeTab(FluxCreativeTabs.FIMACHINES);
 		electricCrusher.setCreativeTab(FluxCreativeTabs.FIMACHINES);
 		centrifuge.setCreativeTab(FluxCreativeTabs.FIMACHINES);
+		energyStorageBasic.setCreativeTab(FluxCreativeTabs.FIMACHINES);
 	}
 	
 	public static BlockFlux register (BlockFlux block, ItemBlock itemBlock)

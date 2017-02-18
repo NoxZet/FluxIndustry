@@ -32,17 +32,17 @@ public class FluxUniversalProducer implements ITeslaProducer {
 		if (this.mode == TESLA)
 		{
 			TileEntity entity = world.getTileEntity(pos);
-			if (entity != null && entity.hasCapability(TeslaCapabilities.CAPABILITY_PRODUCER, facing))
+			if (entity != null && entity.hasCapability(TeslaCapabilities.CAPABILITY_PRODUCER, facing.getOpposite()))
 			{
-				return ((ITeslaProducer) entity.getCapability(TeslaCapabilities.CAPABILITY_PRODUCER, facing)).takePower(Tesla, simulate);
+				return ((ITeslaProducer) entity.getCapability(TeslaCapabilities.CAPABILITY_PRODUCER, facing.getOpposite())).takePower(Tesla, simulate);
 			}
 		}
 		else if (this.mode == FORGE)
 		{
 			TileEntity entity = world.getTileEntity(pos);
-			if (entity != null && entity.hasCapability(CapabilityEnergy.ENERGY, facing))
+			if (entity != null && entity.hasCapability(CapabilityEnergy.ENERGY, facing.getOpposite()))
 			{
-				IEnergyStorage forgeEnergy = ((IEnergyStorage) entity.getCapability(CapabilityEnergy.ENERGY, facing));
+				IEnergyStorage forgeEnergy = ((IEnergyStorage) entity.getCapability(CapabilityEnergy.ENERGY, facing.getOpposite()));
 				if (forgeEnergy.canExtract())
 					return forgeEnergy.extractEnergy((int)Tesla, simulate);
 			}
@@ -53,7 +53,7 @@ public class FluxUniversalProducer implements ITeslaProducer {
 			if (entity != null && entity instanceof cofh.api.energy.IEnergyProvider)
 			{
 				cofh.api.energy.IEnergyProvider rfEnergy = (cofh.api.energy.IEnergyProvider) entity;
-				return rfEnergy.extractEnergy(facing, (int)Tesla, simulate);
+				return rfEnergy.extractEnergy(facing.getOpposite(), (int)Tesla, simulate);
 			}
 		}
 		return 0;

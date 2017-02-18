@@ -1,0 +1,55 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cube",
+		"textures": {
+			"particle": "fluxindustry:blocks/energy_storage_basic_bottom",
+			"down": "fluxindustry:blocks/energy_storage_basic_bottom",
+			"up": "fluxindustry:blocks/energy_storage_basic_top",
+			"north": "fluxindustry:blocks/energy_storage_basic_side",
+			"south": "fluxindustry:blocks/energy_storage_basic_side",
+			"west": "fluxindustry:blocks/energy_storage_basic_side",
+			"east": "fluxindustry:blocks/energy_storage_basic_side"
+		}
+	},
+	"variants": {
+		"facing": {
+			"down": {
+				"textures": {
+					"down": "fluxindustry:blocks/energy_storage_basic_bottom_out"
+				}
+			},
+			"up": {
+				"textures": {
+					"up": "fluxindustry:blocks/energy_storage_basic_top_out"
+				}
+			},
+			"north": {
+				"textures": {
+					"north": "fluxindustry:blocks/energy_storage_basic_side_out"
+				}
+			},
+			"south": {
+				"textures": {
+					"south": "fluxindustry:blocks/energy_storage_basic_side_out"
+				}
+			},
+			"west": {
+				"textures": {
+					"west": "fluxindustry:blocks/energy_storage_basic_side_out"
+				}
+			},
+			"east": {
+				"textures": {
+					"east": "fluxindustry:blocks/energy_storage_basic_side_out"
+				}
+			}
+		},
+		"lit": {
+			"false": {
+			},
+			"true": {
+			}
+		}
+	}
+}

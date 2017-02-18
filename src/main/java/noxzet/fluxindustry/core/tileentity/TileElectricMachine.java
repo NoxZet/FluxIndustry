@@ -60,16 +60,16 @@ public class TileElectricMachine extends TileElectricInventory {
 						burnProgress = 0;
 					else if (burnProgress>=burnTimeNeeded)
 					{
-						thisStack.shrink(neededCount);
-						inventory.setStackInSlot(0, thisStack);
 						if (chosenResult < 0)
 							chosenResult++;
 						boolean process = true;
 						for (int i = 0; i < outputs && reset == false; i++)
-							if (rightStack[i].getCount()+resultStack[i].getCount() > rightStack[i].getMaxStackSize())
+							if (!rightStack[i].isEmpty() && ItemStack.areItemsEqual(rightStack[i], resultStack[i]) && rightStack[i].getCount()+resultStack[i].getCount() > rightStack[i].getMaxStackSize())
 								process = false;
 						if (process)
 						{
+							thisStack.shrink(neededCount);
+							inventory.setStackInSlot(0, thisStack);
 							if (chosenResult >= 0)
 							{
 								if (rightStack[chosenResult].isEmpty())
@@ -80,6 +80,7 @@ public class TileElectricMachine extends TileElectricInventory {
 									inventory.setStackInSlot(2+chosenResult, rightStack[chosenResult]);
 								}
 							}
+							// TODO add to all output slots if (chosenResult == -1)
 							burnProgress = 0;
 							chosenResult = -1;
 						}

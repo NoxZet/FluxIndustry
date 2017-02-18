@@ -8,6 +8,8 @@ tile.fluxindustry.electric_furnace.name=Electric Furnace
 tile.fluxindustry.electric_crusher.name=Crusher
 tile.fluxindustry.centrifuge.name=Centrifuge
 
+tile.fluxindustry.energy_storage_basic=Basic Energy Storage
+
 tile.fluxindustry.ore_copper.name=Copper Ore
 tile.fluxindustry.ore_tin.name=Tin Ore
 tile.fluxindustry.ore_zinc.name=Zinc Ore

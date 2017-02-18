@@ -22,8 +22,8 @@ public class GeneratorCoalContainerGui extends FluxContainerGui {
 	{
 		int fuelLevel = tile.getFuelLevel();
 		int fuelMax = tile.getFuelMax();
-		long storedPower = tile.getStoredPower();
-		long capacity = tile.getCapacity();
+		long storedPower = tile.getFluxStoredPower();
+		long capacity = tile.getFluxMaxStoredPower();
 		mc.getTextureManager().bindTexture(background);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		if (fuelLevel>0)
@@ -33,12 +33,12 @@ public class GeneratorCoalContainerGui extends FluxContainerGui {
 		}
 		if (storedPower>=capacity)
 		{
-			drawTexturedModalRect(guiLeft+94, guiTop+23, 176, 14, 22, 43);
+			drawTexturedModalRect(guiLeft+95, guiTop+23, 176, 14, 22, 43);
 		}
 		else
 		{
 			int energyHeight = (int) Math.round(((float)storedPower)/((float)capacity)*40);
-			drawTexturedModalRect(guiLeft+94, guiTop+65-energyHeight, 176, 56-energyHeight, 22, energyHeight);
+			drawTexturedModalRect(guiLeft+95, guiTop+65-energyHeight, 176, 56-energyHeight, 22, energyHeight);
 		}
 	}
 	
