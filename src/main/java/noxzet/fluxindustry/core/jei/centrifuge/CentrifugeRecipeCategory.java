@@ -50,9 +50,9 @@ public class CentrifugeRecipeCategory extends BlankRecipeCategory<CentrifugeReci
 	{
 		IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 		guiItemStacks.init(INPUT_SLOTS[0], true, 0, 0);
-		guiItemStacks.init(OUTPUT_SLOTS[0], false, 67, 1);
-		guiItemStacks.init(OUTPUT_SLOTS[1], false, 67, 19);
-		guiItemStacks.init(OUTPUT_SLOTS[2], false, 67, 37);
+		guiItemStacks.init(OUTPUT_SLOTS[0], false, 66, 0);
+		guiItemStacks.init(OUTPUT_SLOTS[1], false, 66, 18);
+		guiItemStacks.init(OUTPUT_SLOTS[2], false, 66, 36);
 		guiItemStacks.set(INPUT_SLOTS[0], ingredients.getInputs(ItemStack.class).get(0));
 		guiItemStacks.set(OUTPUT_SLOTS[0], ingredients.getOutputs(ItemStack.class).get(0));
 		guiItemStacks.set(OUTPUT_SLOTS[1], ingredients.getOutputs(ItemStack.class).get(1));

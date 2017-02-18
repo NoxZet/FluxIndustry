@@ -41,6 +41,7 @@ public class TileElectricMachine extends TileElectricInventory {
 	{
 		if (!world.isRemote)
 		{
+			isLit = false;
 			this.slotTakeEnergy(1, container.getMaxInputTick(false), false);
 			ItemStack thisStack = inventory.getStackInSlot(0).copy();
 			if (!thisStack.isEmpty())
@@ -87,6 +88,7 @@ public class TileElectricMachine extends TileElectricInventory {
 					{
 						container.changePower(-teslaPerTick);
 						burnProgress++;
+						isLit = true;
 					}
 				}
 				else
@@ -99,7 +101,6 @@ public class TileElectricMachine extends TileElectricInventory {
 				this.setPreviousEmpty();
 			}
 			this.markDirty();
-			machineRender();
 		}
 		super.update();
 	}
@@ -107,19 +108,6 @@ public class TileElectricMachine extends TileElectricInventory {
 	protected void updateElectric()
 	{
 		super.update();
-	}
-	
-	protected void machineRender()
-	{
-		if (burnProgress>0 && container.getStoredPower()>=teslaPerTick)
-		{
-			isLitHold = true;
-			isLit = true;
-		}
-		if (isLitHold==true)
-			isLitHold = false;
-		else
-			isLit = false;
 	}
 	
 	protected void setPrevious(ItemStack stack, ItemStack[] resultStack)
