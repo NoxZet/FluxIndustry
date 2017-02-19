@@ -1,10 +1,12 @@
 package noxzet.fluxindustry.core.item;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import noxzet.fluxindustry.core.FluxIndustry;
 
 public class FluxItems {
 
-	public static ItemFlux ingotBasic, nuggetBasic, powderBasic, materialBasic, batteryBasic, wrenchBrass, treetap, cableUninsulated, cableBasic;
+	public static ItemFlux ingotBasic, nuggetBasic, powderBasic, materialBasic, wrenchBrass, treetap, cableUninsulated, cableBasic,
+			batteryBasic, fluidContainer;
 	
 	public static void init()
 	{
@@ -17,10 +19,13 @@ public class FluxItems {
 		treetap = register(new ItemTreetap("treetap"));
 		cableUninsulated = register(new ItemFluxMulti("cable_uninsulated", "cable_uninsulated_", new String[] {"copper", "tin", "aluminum", "bronze", "iron", "gold"}));
 		cableBasic = register(new ItemFluxCable("cable_basic"));
+		fluidContainer = register(new ItemFluidContainer("fluid_container"));
 	}
 	
 	public static void postInit()
 	{
+		FluxIndustry.proxy.registerColorHandlers();
+		((ItemFluidContainer)fluidContainer).registerAllFluids();
 		ingotBasic.setCreativeTab(FluxCreativeTabs.FIMATERIALS);
 		nuggetBasic.setCreativeTab(FluxCreativeTabs.FIMATERIALS);
 		powderBasic.setCreativeTab(FluxCreativeTabs.FIMATERIALS);
@@ -30,6 +35,7 @@ public class FluxItems {
 		treetap.setCreativeTab(FluxCreativeTabs.FIBLOCKS);
 		cableUninsulated.setCreativeTab(FluxCreativeTabs.FIMATERIALS);
 		cableBasic.setCreativeTab(FluxCreativeTabs.FIMACHINES);
+		fluidContainer.setCreativeTab(FluxCreativeTabs.FIMATERIALS);
 	}
 	
 	public static ItemFlux register(ItemFlux item)

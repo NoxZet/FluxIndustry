@@ -157,16 +157,16 @@ public class BlockFluxCable extends BlockFlux implements ITileEntityClassProvide
 			NBTTagCompound itemCableTag = new NBTTagCompound();
 			NBTTagCompound cableCompound = entityCable.writeToNBT(new NBTTagCompound());
 			NBTTagCompound cableContainerCompound;
-			if (cableCompound.hasKey("teslaCable", NBT.TAG_COMPOUND))
+			if (cableCompound.hasKey("TeslaCable", NBT.TAG_COMPOUND))
 			{
-				cableContainerCompound = (NBTTagCompound) cableCompound.getTag("teslaCable");
+				cableContainerCompound = (NBTTagCompound) cableCompound.getTag("TeslaCable");
 				if (cableContainerCompound.hasKey("TeslaCapacity", NBT.TAG_LONG))
 					itemCableTag.setLong("TeslaCapacity", cableContainerCompound.getLong("TeslaCapacity"));
 				if (cableContainerCompound.hasKey("TeslaMinPower", NBT.TAG_LONG))
 					itemCableTag.setLong("TeslaMinPower", cableContainerCompound.getLong("TeslaMinPower"));
 				if (cableContainerCompound.hasKey("TeslaLoss", NBT.TAG_FLOAT))
 					itemCableTag.setFloat("TeslaLoss", cableContainerCompound.getFloat("TeslaLoss"));
-				itemTag.setTag("teslaCable", itemCableTag);
+				itemTag.setTag("TeslaCable", itemCableTag);
 				itemstack.setTagCompound(itemTag);
 				return itemstack;
 			}

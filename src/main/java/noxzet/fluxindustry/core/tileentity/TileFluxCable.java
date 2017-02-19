@@ -44,8 +44,8 @@ public class TileFluxCable extends TileEntityFlux implements IFluxCable, ITickab
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
-		if (compound.hasKey("teslaCable", NBT.TAG_COMPOUND))
-			container.fromNBT((NBTTagCompound)compound.getTag("teslaCable"));
+		if (compound.hasKey("TeslaCable", NBT.TAG_COMPOUND))
+			container.fromNBT((NBTTagCompound)compound.getTag("TeslaCable"));
 	}
 	
 	@Override
@@ -53,7 +53,7 @@ public class TileFluxCable extends TileEntityFlux implements IFluxCable, ITickab
 	{
 		super.writeToNBT(compound);
 		if (container != null)
-			compound.setTag("teslaCable", container.toNBT());
+			compound.setTag("TeslaCable", container.toNBT());
 		return compound;
 	}
 	

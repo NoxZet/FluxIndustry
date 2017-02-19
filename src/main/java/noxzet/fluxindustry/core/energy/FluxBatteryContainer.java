@@ -3,10 +3,15 @@ package noxzet.fluxindustry.core.energy;
 import net.darkhax.tesla.api.ITeslaConsumer;
 import net.darkhax.tesla.api.ITeslaHolder;
 import net.darkhax.tesla.api.ITeslaProducer;
+import net.darkhax.tesla.capability.TeslaCapabilities;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class FluxBatteryContainer implements ITeslaConsumer, ITeslaHolder, ITeslaProducer, IEnergyStorage {
+public class FluxBatteryContainer implements ICapabilityProvider, ITeslaConsumer, ITeslaHolder, ITeslaProducer, IEnergyStorage {
 
 	private final ItemStack stack;
 	private long capacity;
@@ -17,6 +22,30 @@ public class FluxBatteryContainer implements ITeslaConsumer, ITeslaHolder, ITesl
 		this.stack = stack;
 		this.capacity = capacity;
 		this.chargeable = chargeable;
+	}
+	
+	@Override
+	public boolean hasCapability (Capability<?> capability, EnumFacing facing)
+	{
+		if (capability == TeslaCapabilities.CAPABILITY_CONSUMER ||
+				capability == TeslaCapabilities.CAPABILITY_PRODUCER ||
+				capability == TeslaCapabilities.CAPABILITY_HOLDER ||
+				capability == CapabilityEnergy.ENERGY)
+			return true;
+		else
+			return false;
+	}
+	
+	@Override
+	public <T> T getCapability (Capability<T> capability, EnumFacing facing)
+	{
+		if (capability == TeslaCapabilities.CAPABILITY_CONSUMER ||
+				capability == TeslaCapabilities.CAPABILITY_PRODUCER ||
+				capability == TeslaCapabilities.CAPABILITY_HOLDER ||
+				capability == CapabilityEnergy.ENERGY)
+			return (T) this;
+		else
+			return null;
 	}
 	
 	public long givePower (long Tesla, boolean simulated)

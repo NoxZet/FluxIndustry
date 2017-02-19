@@ -8,7 +8,7 @@ tile.fluxindustry.electric_furnace.name=Electric Furnace
 tile.fluxindustry.electric_crusher.name=Crusher
 tile.fluxindustry.centrifuge.name=Centrifuge
 
-tile.fluxindustry.energy_storage_basic=Basic Energy Storage
+tile.fluxindustry.energy_storage_basic.name=Basic Energy Storage
 
 tile.fluxindustry.ore_copper.name=Copper Ore
 tile.fluxindustry.ore_tin.name=Tin Ore
@@ -92,6 +92,10 @@ item.fluxindustry.cable_bronze.name=Bronze Cable
 item.fluxindustry.cable_iron.name=Iron Cable
 item.fluxindustry.cable_gold.name=Gold Cable
 
-item.fluxindustry.tip.max=Max:
-item.fluxindustry.tip.min=Min:
-item.fluxindustry.tip.loss=Loss:
+item.fluxindustry.fluid_container.name=Zinc Container
+
+item.fluxindustry.tip.max=Max
+item.fluxindustry.tip.min=Min
+item.fluxindustry.tip.loss=Loss
+item.fluxindustry.tip.empty=Empty
+item.fluxindustry.tip.fluid_invalid=Invalid fluid (Error)

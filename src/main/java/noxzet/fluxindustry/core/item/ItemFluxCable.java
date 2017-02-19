@@ -40,32 +40,32 @@ public class ItemFluxCable extends ItemFlux {
 		itemCableTag[0].setLong("TeslaCapacity", 80);
 		itemCableTag[0].setLong("TeslaMinPower", 20);
 		itemCableTag[0].setFloat("TeslaLoss", 0.5F);		
-		itemTag[0].setTag("teslaCable", itemCableTag[0]);
+		itemTag[0].setTag("TeslaCable", itemCableTag[0]);
 		// Tin wire
 		itemCableTag[1].setLong("TeslaCapacity", 20);
 		itemCableTag[1].setLong("TeslaMinPower", 8);
 		itemCableTag[1].setFloat("TeslaLoss", 0.1F);
-		itemTag[1].setTag("teslaCable", itemCableTag[1]);
+		itemTag[1].setTag("TeslaCable", itemCableTag[1]);
 		// Aluminum wire
 		itemCableTag[2].setLong("TeslaCapacity", 160);
 		itemCableTag[2].setLong("TeslaMinPower", 60);
 		itemCableTag[2].setFloat("TeslaLoss", 0.7F);
-		itemTag[2].setTag("teslaCable", itemCableTag[2]);
+		itemTag[2].setTag("TeslaCable", itemCableTag[2]);
 		// Bronze wire
 		itemCableTag[3].setLong("TeslaCapacity", 320);
 		itemCableTag[3].setLong("TeslaMinPower", 80);
 		itemCableTag[3].setFloat("TeslaLoss", 0.9F);
-		itemTag[3].setTag("teslaCable", itemCableTag[3]);
+		itemTag[3].setTag("TeslaCable", itemCableTag[3]);
 		// Iron wire
 		itemCableTag[4].setLong("TeslaCapacity", 640);
 		itemCableTag[4].setLong("TeslaMinPower", 240);
 		itemCableTag[4].setFloat("TeslaLoss", 2.5F);
-		itemTag[4].setTag("teslaCable", itemCableTag[4]);
+		itemTag[4].setTag("TeslaCable", itemCableTag[4]);
 		// Iron wire
 		itemCableTag[5].setLong("TeslaCapacity", 1280);
 		itemCableTag[5].setLong("TeslaMinPower", 320);
 		itemCableTag[5].setFloat("TeslaLoss", 2.1F);
-		itemTag[5].setTag("teslaCable", itemCableTag[5]);
+		itemTag[5].setTag("TeslaCable", itemCableTag[5]);
 	}
 	
 	@Override
@@ -103,15 +103,15 @@ public class ItemFluxCable extends ItemFlux {
     public void addInformation(ItemStack itemstack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
     {
 		NBTTagCompound itemTag = itemstack.getTagCompound();
-		if (itemTag != null && itemTag.hasKey("teslaCable", NBT.TAG_COMPOUND))
+		if (itemTag != null && itemTag.hasKey("TeslaCable", NBT.TAG_COMPOUND))
 		{
-			NBTTagCompound itemCableTag = itemTag.getCompoundTag("teslaCable");
+			NBTTagCompound itemCableTag = itemTag.getCompoundTag("TeslaCable");
 			if (itemCableTag.hasKey("TeslaCapacity", NBT.TAG_LONG))
-				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.max") + " " + itemCableTag.getLong("TeslaCapacity") + " "+FluxIndustry.unit+"/t");
+				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.max") + ": " + itemCableTag.getLong("TeslaCapacity") + " "+FluxIndustry.unit+"/t");
 			if (itemCableTag.hasKey("TeslaMinPower", NBT.TAG_LONG))
-				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.min") + " " + itemCableTag.getLong("TeslaMinPower") + " "+FluxIndustry.unit+"/t");
+				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.min") + ": " + itemCableTag.getLong("TeslaMinPower") + " "+FluxIndustry.unit+"/t");
 			if (itemCableTag.hasKey("TeslaLoss", NBT.TAG_FLOAT))
-				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.loss") + " " + itemCableTag.getFloat("TeslaLoss") + " "+FluxIndustry.unit+"/m");
+				tooltip.add(I18n.translateToLocal("item.fluxindustry.tip.loss") + ": " + itemCableTag.getFloat("TeslaLoss") + " "+FluxIndustry.unit+"/m");
 		}
     }
 	
@@ -129,9 +129,9 @@ public class ItemFluxCable extends ItemFlux {
         	if (itemTag != null)
         	{
 	        	NBTTagCompound totalCompound = new NBTTagCompound();
-	        	if (itemTag.hasKey("teslaCable", NBT.TAG_COMPOUND))
+	        	if (itemTag.hasKey("TeslaCable", NBT.TAG_COMPOUND))
 	        	{
-	        		NBTTagCompound itemCableTag = (NBTTagCompound)itemTag.getTag("teslaCable");
+	        		NBTTagCompound itemCableTag = (NBTTagCompound)itemTag.getTag("TeslaCable");
 		    		NBTTagCompound cableContainerCompound = new NBTTagCompound();
 		    		cableContainerCompound.setLong("TeslaPower", 0);
 		    		if (itemCableTag.hasKey("TeslaCapacity", NBT.TAG_LONG))
@@ -140,10 +140,10 @@ public class ItemFluxCable extends ItemFlux {
 			    		cableContainerCompound.setLong("TeslaMinPower", itemCableTag.getLong("TeslaMinPower"));
 		    		if (itemCableTag.hasKey("TeslaLoss", NBT.TAG_FLOAT))
 			    		cableContainerCompound.setFloat("TeslaLoss", itemCableTag.getFloat("TeslaLoss"));
-		    		totalCompound.setTag("teslaCable", cableContainerCompound);
+		    		totalCompound.setTag("TeslaCable", cableContainerCompound);
 	        	}
 	        	else
-	        		totalCompound.setTag("teslaCable", new NBTTagCompound());
+	        		totalCompound.setTag("TeslaCable", new NBTTagCompound());
 	        	totalCompound.setInteger("x", pos.getX());
 	        	totalCompound.setInteger("y", pos.getY());
 	        	totalCompound.setInteger("z", pos.getZ());
