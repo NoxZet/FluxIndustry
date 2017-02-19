@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "fluxindustry:items/fluid_container",
+        "layer1": "fluxindustry:items/fluid_container_stripe"
+    }
+}

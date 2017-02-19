@@ -102,7 +102,7 @@ public class TileElectricInventory extends TileElectric {
 					if (!simulated)
 						inventory.setStackInSlot(slot, stack);
 				}
-				if (stack.hasCapability(CapabilityEnergy.ENERGY, null))
+				else if (stack.hasCapability(CapabilityEnergy.ENERGY, null))
 				{
 					stack = stack.copy();
 					IEnergyStorage capability = (IEnergyStorage)stack.getCapability(CapabilityEnergy.ENERGY, null);
@@ -144,7 +144,7 @@ public class TileElectricInventory extends TileElectric {
 					if (!simulated)
 						inventory.setStackInSlot(slot, stack);
 				}
-				if (stack.hasCapability(CapabilityEnergy.ENERGY, null))
+				else if (stack.hasCapability(CapabilityEnergy.ENERGY, null))
 				{
 					stack = stack.copy();
 					IEnergyStorage capability = (IEnergyStorage)stack.getCapability(CapabilityEnergy.ENERGY, null);

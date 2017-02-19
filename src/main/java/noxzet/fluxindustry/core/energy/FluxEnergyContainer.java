@@ -56,10 +56,10 @@ public class FluxEnergyContainer implements ITeslaHolder, ITeslaConsumer, ITesla
 			setCapacity(compound.getLong("TeslaCapacity"));
 		if (compound.hasKey("TeslaPower", NBT.TAG_LONG))
 			setStoredPower(compound.getLong("TeslaPower"));
-		if (compound.hasKey("TeslaInput", NBT.TAG_LONG))
+		/*if (compound.hasKey("TeslaInput", NBT.TAG_LONG))
 			setInputRate(compound.getLong("TeslaInput"));
 		if (compound.hasKey("TeslaOutput", NBT.TAG_LONG))
-			setOutputRate(compound.getLong("TeslaOutput"));
+			setOutputRate(compound.getLong("TeslaOutput"));*/
 	}
 	
 	public NBTTagCompound toNBT()
@@ -71,8 +71,8 @@ public class FluxEnergyContainer implements ITeslaHolder, ITeslaConsumer, ITesla
 	{
 		compound.setLong("TeslaCapacity", capacity);
 		compound.setLong("TeslaPower", stored);
-		compound.setLong("TeslaInput", inputRate);
-		compound.setLong("TeslaOutput", outputRate);
+		//compound.setLong("TeslaInput", inputRate);
+		//compound.setLong("TeslaOutput", outputRate);
 		return compound;
 	}
 	

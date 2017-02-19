@@ -14,7 +14,7 @@ import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import noxzet.fluxindustry.core.FluxIndustry;
-import noxzet.fluxindustry.core.energy.FluxBatteryProvider;
+import noxzet.fluxindustry.core.energy.FluxBatteryContainer;
 
 public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
 
@@ -24,7 +24,7 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
 	public String[] name;
 	public boolean[] chargeable;
 	
-	public ItemFluxBattery(String unlocalizedName)
+	private ItemFluxBattery(String unlocalizedName)
 	{
 		super(unlocalizedName);
 		this.setHasSubtypes(true);
@@ -123,19 +123,25 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
 	@Override
 	public ICapabilityProvider initCapabilities (ItemStack stack, NBTTagCompound nbt)
 	{
-		int meta = stack.getMetadata();
-		if (meta < 0 || meta >= capacity.length)
-			meta = 0;
-		if (stack.getTagCompound()==null)
+		if (stack != null && stack.getItem() == this)
 		{
-			stack.setTagCompound(new NBTTagCompound());
+			int meta = stack.getMetadata();
+			if (meta < 0 || meta >= capacity.length)
+				meta = 0;
+			if (stack.getTagCompound()==null)
+			{
+				stack.setTagCompound(new NBTTagCompound());
+			}
+			if (!stack.getTagCompound().hasKey("Tesla", NBT.TAG_LONG))
+			{
+				stack.getTagCompound().setLong("Tesla", 0);
+			}
+			return new FluxBatteryContainer(stack, capacity[meta], chargeable[meta]);
 		}
-		if (!stack.getTagCompound().hasKey("Tesla", NBT.TAG_LONG))
-		{
-			stack.getTagCompound().setLong("Tesla", 0);
-		}
-		return new FluxBatteryProvider(stack, capacity[meta], chargeable[meta]);
+		return null;
 	}
+	
+	// CoFH API
 
 	@Override
 	public int receiveEnergy(ItemStack stack, int Tesla, boolean simulated)

@@ -3,6 +3,8 @@ package noxzet.fluxindustry.core.item;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import noxzet.fluxindustry.core.FluxIndustry;
 
 public class ItemFlux extends Item {
@@ -16,8 +18,14 @@ public class ItemFlux extends Item {
 		this.setRegistryName(unlocalizedName);
 	}
 	
-	public void registerItemModel() {
+	public void registerItemModel()
+	{
 		FluxIndustry.proxy.registerItemRenderer(this, 0, "normal");
+	}
+	
+	public void registerColorHandler()
+	{
+		FluxIndustry.proxy.prepareColorHandler(this);
 	}
 	
 	@Override
@@ -50,6 +58,12 @@ public class ItemFlux extends Item {
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		return "item." + FluxIndustry.MODID + "." + this.unlocalizedName;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public int getColor(ItemStack stack, int tintIndex)
+	{
+		return 0xFFFFFF;
 	}
 	
 }
