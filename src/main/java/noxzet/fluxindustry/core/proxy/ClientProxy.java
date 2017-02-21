@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
-import noxzet.fluxindustry.core.item.FluxItems;
 import noxzet.fluxindustry.core.item.ItemFlux;
 
 public class ClientProxy extends CommonProxy {
