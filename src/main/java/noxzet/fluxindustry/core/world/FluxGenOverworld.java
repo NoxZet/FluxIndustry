@@ -1,5 +1,14 @@
 package noxzet.fluxindustry.core.world;
 
+import static noxzet.fluxindustry.core.config.FluxConfig.DO_ORE_GEN_ALUMINUM;
+import static noxzet.fluxindustry.core.config.FluxConfig.DO_ORE_GEN_COPPER;
+import static noxzet.fluxindustry.core.config.FluxConfig.DO_ORE_GEN_LEAD;
+import static noxzet.fluxindustry.core.config.FluxConfig.DO_ORE_GEN_TIN;
+import static noxzet.fluxindustry.core.config.FluxConfig.DO_ORE_GEN_URANIUM;
+import static noxzet.fluxindustry.core.config.FluxConfig.DO_ORE_GEN_ZINC;
+
+import java.util.Random;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -12,10 +21,6 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import noxzet.fluxindustry.core.block.BlockOreBasic;
 import noxzet.fluxindustry.core.block.FluxBlocks;
 import noxzet.fluxindustry.core.config.FluxConfig;
-
-import java.util.Random;
-
-import static noxzet.fluxindustry.core.config.FluxConfig.*;
 
 public class FluxGenOverworld implements IWorldGenerator {
 

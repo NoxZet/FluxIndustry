@@ -1,5 +1,7 @@
 package noxzet.fluxindustry.core.item;
 
+import java.util.List;
+
 import cofh.api.energy.IEnergyContainerItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,8 +16,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import noxzet.fluxindustry.core.FluxIndustry;
 import noxzet.fluxindustry.core.FluxUtils;
 import noxzet.fluxindustry.core.energy.FluxBatteryContainer;
-
-import java.util.List;
 
 public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
 

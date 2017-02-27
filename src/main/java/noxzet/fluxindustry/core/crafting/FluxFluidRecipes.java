@@ -3,7 +3,6 @@ package noxzet.fluxindustry.core.crafting;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;

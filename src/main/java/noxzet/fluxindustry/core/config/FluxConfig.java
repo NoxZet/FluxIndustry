@@ -1,10 +1,11 @@
 package noxzet.fluxindustry.core.config;
 
-import net.minecraftforge.common.config.Configuration;
-import noxzet.fluxindustry.core.FluxIndustry;
+import static noxzet.fluxindustry.core.FluxIndustry.logger;
+
 import org.apache.logging.log4j.Level;
 
-import static noxzet.fluxindustry.core.FluxIndustry.logger;
+import net.minecraftforge.common.config.Configuration;
+import noxzet.fluxindustry.core.FluxIndustry;
 
 public class FluxConfig {
     // general

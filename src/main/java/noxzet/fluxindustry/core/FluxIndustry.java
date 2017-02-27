@@ -1,5 +1,9 @@
 package noxzet.fluxindustry.core;
 
+import java.io.File;
+
+import org.apache.logging.log4j.Logger;
+
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -16,9 +20,6 @@ import noxzet.fluxindustry.core.item.FluxCreativeTabs;
 import noxzet.fluxindustry.core.item.FluxItems;
 import noxzet.fluxindustry.core.proxy.CommonProxy;
 import noxzet.fluxindustry.core.world.FluxGenOverworld;
-import org.apache.logging.log4j.Logger;
-
-import java.io.File;
 
 @Mod(modid = FluxIndustry.MODID, version = FluxIndustry.VERSION, dependencies = "required-after:tesla")
 public class FluxIndustry
