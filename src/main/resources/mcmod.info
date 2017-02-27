@@ -7,8 +7,8 @@
   "mcversion": "${mcversion}",
   "url": "https://github.com/NoxZet/FluxIndustry",
   "updateUrl": "",
-  "authorList": ["NoxZet"],
-  "credits": "NoxZet, Reach24",
+  "authorList": ["NoxZet", "RogueLogic", "Reach24"],
+  "credits": "IC2 for being the main inspiration",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

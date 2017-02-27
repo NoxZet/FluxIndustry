@@ -7,7 +7,7 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class FluxFluidContainer implements IFluidHandler {
 	
-	private FluidStack stack;
+	public FluidStack stack;
 	private int capacity;
 	
 	public FluxFluidContainer(int capacity)
@@ -65,6 +65,11 @@ public class FluxFluidContainer implements IFluidHandler {
 				stack.amount -= drainedAmount;
 		}
 		return new FluidStack(stack.getFluid(), drainedAmount);
+	}
+	
+	public int getCapacity()
+	{
+		return this.capacity;
 	}
 	
 	public void readFromNBT(NBTTagCompound compound)

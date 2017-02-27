@@ -97,8 +97,13 @@ public class TileTreetap extends TileEntityFlux implements ITickable {
 	
 	public static boolean isValidLog(Item itemblock)
 	{
-		int[] attachedToIds = OreDictionary.getOreIDs(new ItemStack(itemblock));
+		if (itemblock == null)
+			return false;
+		ItemStack itemstack = new ItemStack(itemblock);
+		if (itemstack.isEmpty())
+			return false;
 		boolean isValidLog = false;
+		int[] attachedToIds = OreDictionary.getOreIDs(itemstack);
 		for (int thisId : attachedToIds)
 		{
 			if (OreDictionary.getOreName(thisId) == "logWood")

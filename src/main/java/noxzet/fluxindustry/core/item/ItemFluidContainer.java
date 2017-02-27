@@ -18,6 +18,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import noxzet.fluxindustry.core.FluxIndustry;
+import noxzet.fluxindustry.core.FluxUtils;
 import noxzet.fluxindustry.core.fluid.FluxItemFluidContainer;
 
 public class ItemFluidContainer extends ItemFlux {
@@ -95,15 +96,7 @@ public class ItemFluidContainer extends ItemFlux {
 			if (stack.hasTagCompound() && stack.getTagCompound().hasKey("FluidStack"))
 			{
 				String fluidName = ((NBTTagCompound)stack.getTagCompound().getTag("FluidStack")).getString("FluidName");
-				Fluid fluid = FluidRegistry.getFluid(fluidName);
-				if (fluid != null)
-				{
-					if (fluid.getColor() != 0xFFFFFF && fluid.getColor() != -1)
-						return fluid.getColor();
-					Block fluidBlock = fluid.getBlock();
-					if (fluidBlock != null)
-						return fluidBlock.getMapColor(fluidBlock.getDefaultState()).colorValue;
-				}
+				return FluxUtils.getFluidColor(fluidName);
 			}
 		}
 		return 0xFFFFFF;

@@ -56,15 +56,15 @@ public class TileElectricInventory extends TileElectric {
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
-		if (compound.hasKey("items"))
-			inventory.deserializeNBT((NBTTagCompound) compound.getTag("items"));
+		if (compound.hasKey("Inventory"))
+			inventory.deserializeNBT((NBTTagCompound) compound.getTag("Inventory"));
 	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
-		compound.setTag("items", inventory.serializeNBT());
+		compound.setTag("Inventory", inventory.serializeNBT());
 		return compound;
 	}
 	
