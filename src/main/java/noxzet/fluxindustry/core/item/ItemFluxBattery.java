@@ -93,8 +93,7 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
             itemstack.getTagCompound().setLong("Tesla", 0);
         // Tooltip itself
         if (capacityGrade[meta] < 1)
-            tooltip.add(String.format("%d/%d %s", itemstack.getTagCompound().getLong("Tesla"), FluxIndustry.unit,
-                    capacity[meta], FluxIndustry.unit));
+            tooltip.add(itemstack.getTagCompound().getLong("Tesla") + "/" + capacity[meta] + FluxIndustry.unit);
         else {
             int floatPlacesAmount = 1;
             double divider = Math.pow(1000, capacityGrade[meta]);
@@ -102,12 +101,6 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
             double shownCapacity = capacity[meta] / divider;
             if (shownCapacity < 10)
                 floatPlacesAmount = 2;
-            // TODO: 2/20/2017 I think this (0/100 M(Energy Unit) looks better (than 0 M(EnergyUnit) / 100 M(Energy Unit)
-//            tooltip.add(
-//                    String.format("%." + floatPlacesAmount + "f %s", shownAmount, "kMGTHE".charAt(capacityGrade[meta] - 1) + FluxIndustry.unit) +
-//                            " / " +
-//                            String.format("%." + floatPlacesAmount + "f %s", shownCapacity, "kMGTHE".charAt(capacityGrade[meta] - 1) + FluxIndustry.unit));
-            // reforms above code into former format and removes a String.format call
             tooltip.add(String.format("%." + floatPlacesAmount + "f/%." + floatPlacesAmount + "f " + FluxUtils.getEnergyGrade(capacityGrade[meta]) + FluxIndustry.unit, shownAmount, shownCapacity));
         }
     }
