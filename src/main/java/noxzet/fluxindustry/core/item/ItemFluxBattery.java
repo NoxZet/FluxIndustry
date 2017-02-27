@@ -12,6 +12,7 @@ import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import noxzet.fluxindustry.core.FluxIndustry;
+import noxzet.fluxindustry.core.FluxUtils;
 import noxzet.fluxindustry.core.energy.FluxBatteryContainer;
 
 import java.util.List;
@@ -92,7 +93,7 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
             itemstack.getTagCompound().setLong("Tesla", 0);
         // Tooltip itself
         if (capacityGrade[meta] < 1)
-            tooltip.add(String.format("%d %s / %d %s", itemstack.getTagCompound().getLong("Tesla"), FluxIndustry.unit,
+            tooltip.add(String.format("%d/%d %s", itemstack.getTagCompound().getLong("Tesla"), FluxIndustry.unit,
                     capacity[meta], FluxIndustry.unit));
         else {
             int floatPlacesAmount = 1;
@@ -107,7 +108,7 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
 //                            " / " +
 //                            String.format("%." + floatPlacesAmount + "f %s", shownCapacity, "kMGTHE".charAt(capacityGrade[meta] - 1) + FluxIndustry.unit));
             // reforms above code into former format and removes a String.format call
-            tooltip.add(String.format("%." + floatPlacesAmount + "f/%." + floatPlacesAmount + "f " + ("kMGTHE".charAt(capacityGrade[meta] - 1)) + FluxIndustry.unit, shownAmount, shownCapacity));
+            tooltip.add(String.format("%." + floatPlacesAmount + "f/%." + floatPlacesAmount + "f " + FluxUtils.getEnergyGrade(capacityGrade[meta]) + FluxIndustry.unit, shownAmount, shownCapacity));
         }
     }
 

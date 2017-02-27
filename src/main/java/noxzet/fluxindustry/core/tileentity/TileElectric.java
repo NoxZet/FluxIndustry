@@ -125,12 +125,12 @@ public class TileElectric extends TileEntityFlux implements ICapabilityProvider,
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
-		if (compound.hasKey("teslaContainer"))
+		if (compound.hasKey("TeslaContainer"))
 		{
 			if (container == null)
-				container = new FluxEnergyContainer((NBTTagCompound)compound.getTag("teslaContainer"));
+				container = new FluxEnergyContainer((NBTTagCompound)compound.getTag("TeslaContainer"));
 			else
-				container.fromNBT((NBTTagCompound)compound.getTag("teslaContainer"));
+				container.fromNBT((NBTTagCompound)compound.getTag("TeslaContainer"));
 		}
 	}
 	
@@ -139,7 +139,7 @@ public class TileElectric extends TileEntityFlux implements ICapabilityProvider,
 	{
 		super.writeToNBT(compound);
 		if (container != null)
-			compound.setTag("teslaContainer", container.toNBT());
+			compound.setTag("TeslaContainer", container.toNBT());
 		return compound;
 	}
 	
