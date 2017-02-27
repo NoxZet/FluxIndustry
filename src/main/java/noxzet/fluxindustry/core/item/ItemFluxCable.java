@@ -1,5 +1,7 @@
 package noxzet.fluxindustry.core.item;
 
+import java.util.List;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -20,8 +22,6 @@ import noxzet.fluxindustry.core.block.FluxBlocks;
 import noxzet.fluxindustry.core.block.electric.BlockFluxCable;
 import noxzet.fluxindustry.core.block.electric.BlockFluxCable.CableVariant;
 import noxzet.fluxindustry.core.tileentity.TileFluxCable;
-
-import java.util.List;
 
 public class ItemFluxCable extends ItemFlux {
 

@@ -2,7 +2,12 @@ package noxzet.fluxindustry.core.block;
 
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import noxzet.fluxindustry.core.block.electric.*;
+import noxzet.fluxindustry.core.block.electric.BlockCentrifuge;
+import noxzet.fluxindustry.core.block.electric.BlockElectricCrusher;
+import noxzet.fluxindustry.core.block.electric.BlockElectricFurnace;
+import noxzet.fluxindustry.core.block.electric.BlockEnergyStorage;
+import noxzet.fluxindustry.core.block.electric.BlockFluxCable;
+import noxzet.fluxindustry.core.block.electric.BlockGeneratorCoal;
 import noxzet.fluxindustry.core.item.FluxCreativeTabs;
 import noxzet.fluxindustry.core.item.ItemBlockMulti;
 

@@ -3,7 +3,6 @@ package noxzet.fluxindustry.core;
 import net.minecraft.block.Block;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import scala.Char;
 
 public class FluxUtils {
 
