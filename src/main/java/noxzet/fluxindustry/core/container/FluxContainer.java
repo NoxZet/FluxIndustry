@@ -182,18 +182,15 @@ public class FluxContainer extends Container {
 							}
 						}
 					}
-					if (i==36)
+				}
+				for (int i = 0; i < 36; i++)
+				{
+					targetSlot = this.inventorySlots.get(i);
+					if (!targetSlot.getHasStack())
 					{
-						for (i = 35; i >= 0; i--)
-						{
-							targetSlot = this.inventorySlots.get(i);
-							if (!targetSlot.getHasStack())
-							{
-								targetSlot.putStack(sourceSlot.getStack().copy());
-								sourceSlot.putStack(ItemStack.EMPTY);
-								break;
-							}
-						}
+						targetSlot.putStack(sourceSlot.getStack().copy());
+						sourceSlot.putStack(ItemStack.EMPTY);
+						break;
 					}
 				}
 			}

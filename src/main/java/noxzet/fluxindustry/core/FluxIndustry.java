@@ -26,7 +26,7 @@ public class FluxIndustry
 {
     public static final String MODID = "fluxindustry";
     public static final String VERSION = "0.0.1";
-	@SidedProxy(clientSide="noxzet.fluxindustry.core.proxy.ClientProxy", serverSide="noxzet.fluxindustry.core.proxy.CommonProxy")
+	@SidedProxy(clientSide="noxzet.fluxindustry.core.proxy.ClientProxy", serverSide="noxzet.fluxindustry.core.proxy.ServerProxy")
 	public static CommonProxy proxy;
 	public static FluxIndustry INSTANCE;
 	public static String unit;

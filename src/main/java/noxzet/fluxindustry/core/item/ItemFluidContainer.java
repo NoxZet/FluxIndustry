@@ -10,17 +10,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import noxzet.fluxindustry.api.fluid.IFluxIndustryFluidItem;
 import noxzet.fluxindustry.core.FluxIndustry;
 import noxzet.fluxindustry.core.FluxUtils;
-import noxzet.fluxindustry.core.fluid.FluxItemFluidContainer;
 
-public class ItemFluidContainer extends ItemFlux {
+public class ItemFluidContainer extends ItemFlux implements IFluxIndustryFluidItem {
 	
 	public int capacity;
 	public List<ItemStack> subItems = new ArrayList<>();
@@ -101,12 +100,88 @@ public class ItemFluidContainer extends ItemFlux {
 		return 0xFFFFFF;
 	}
 	
-	@Override
+	/*@Override
 	public ICapabilityProvider initCapabilities (ItemStack stack, NBTTagCompound nbt)
 	{
 		if (stack != null && stack.getItem() == this && stack.hasTagCompound())
 		{
 			return new FluxItemFluidContainer(stack, capacity, new ItemStack(this, 1, 0));
+		}
+		return null;
+	}*/
+
+	private FluidStack loadFromItem(ItemStack itemstack)
+	{
+		if (itemstack.hasTagCompound() && itemstack.getTagCompound().hasKey("FluidStack"))
+		{
+			return FluidStack.loadFluidStackFromNBT((NBTTagCompound) itemstack.getTagCompound().getTag("FluidStack"));
+		}
+		return null;
+	}
+	
+	private void saveToItem(ItemStack itemstack, FluidStack fluidstack)
+	{
+		NBTTagCompound compound;
+		if (itemstack.getTagCompound() != null)
+			compound = itemstack.getTagCompound();
+		else
+			compound = new NBTTagCompound();
+		if (fluidstack == null || fluidstack.amount == 0)
+			compound.removeTag("FluidStack");
+		else
+			compound.setTag("FluidStack", fluidstack.writeToNBT(new NBTTagCompound()));
+	}
+	
+	@Override
+	public int fluxFluidFill(ItemStack itemstack, FluidStack fluid, boolean simulate)
+	{
+		FluidStack fluidstack = loadFromItem(itemstack);
+		if (fluidstack != null && fluid != null && fluidstack.getFluid() == fluid.getFluid())
+		{
+			int filledAmount = Math.min(fluid.amount, this.capacity - fluidstack.amount);
+			if (!simulate && filledAmount > 0)
+			{
+				fluidstack.amount += filledAmount;
+				this.saveToItem(itemstack, fluidstack);
+			}
+			return filledAmount;
+		}
+		return 0;
+	}
+	
+	private FluidStack fluxFluidDrain(ItemStack itemstack, FluidStack fluidstack, int fluid, boolean simulate)
+	{
+		int drainedAmount = Math.min(fluid, fluidstack.amount);
+		if (drainedAmount > 0)
+		{
+			if (!simulate)
+			{
+				fluidstack.amount -= drainedAmount;
+				this.saveToItem(itemstack, fluidstack);
+			}
+			return new FluidStack(fluidstack.getFluid(), drainedAmount);
+		}
+		return null;
+	}
+
+	@Override
+	public FluidStack fluxFluidDrain(ItemStack itemstack, FluidStack fluid, boolean simulate)
+	{
+		FluidStack fluidstack = loadFromItem(itemstack);
+		if (fluidstack != null && fluid != null && fluidstack.getFluid() == fluid.getFluid())
+		{
+			return fluxFluidDrain(itemstack, fluidstack, fluid.amount, simulate);
+		}
+		return null;
+	}
+
+	@Override
+	public FluidStack fluxFluidDrain(ItemStack itemstack, int fluid, boolean simulate)
+	{
+		FluidStack fluidstack = loadFromItem(itemstack);
+		if (fluidstack != null)
+		{
+			return fluxFluidDrain(itemstack, fluidstack, fluid, simulate);
 		}
 		return null;
 	}

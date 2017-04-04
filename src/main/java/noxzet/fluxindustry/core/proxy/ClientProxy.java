@@ -8,8 +8,13 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noxzet.fluxindustry.api.IFluxIndustryPacketHandler;
 import noxzet.fluxindustry.core.item.ItemFlux;
+import noxzet.fluxindustry.core.network.ResponsePacket;
 
 public class ClientProxy extends CommonProxy {
 
@@ -44,6 +49,20 @@ public class ClientProxy extends CommonProxy {
 						}
 					},
 					item);
+		}
+	}
+
+	@Override
+	public void onPacket(IMessage message, MessageContext ctx)
+	{
+		if (message instanceof ResponsePacket)
+		{
+			ResponsePacket packet = (ResponsePacket) message;
+			TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(packet.getPos());
+			if (tile != null && tile instanceof IFluxIndustryPacketHandler)
+			{
+				((IFluxIndustryPacketHandler) tile).fluxPacketHandleBytes(packet.getField(), packet.getBytes());
+			}
 		}
 	}
 	

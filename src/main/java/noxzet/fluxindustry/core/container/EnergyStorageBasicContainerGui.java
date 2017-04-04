@@ -35,4 +35,11 @@ public class EnergyStorageBasicContainerGui extends FluxContainerGui {
 		}
 	}
 	
+	@Override
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
+	{
+		if (mouseX >= guiLeft+96 && mouseY >= guiTop+23 && mouseX < guiLeft+118 && mouseY < guiTop+66)
+			this.drawEnergy(mouseX, mouseY, (int) tile.getFluxStoredPower(), (int) tile.getFluxMaxStoredPower());
+	}
+	
 }

@@ -11,6 +11,7 @@ import noxzet.fluxindustry.core.tileentity.TileElectricFurnace;
 import noxzet.fluxindustry.core.tileentity.TileElectricInventory;
 import noxzet.fluxindustry.core.tileentity.TileEnergyStorage;
 import noxzet.fluxindustry.core.tileentity.TileGeneratorCoal;
+import noxzet.fluxindustry.core.tileentity.TileLiquidFiller;
 
 public class FluxGUI implements IGuiHandler {
 
@@ -28,6 +29,9 @@ public class FluxGUI implements IGuiHandler {
 		}
 		if (tile instanceof TileCentrifuge) {
 			return new CentrifugeContainer(player.inventory, (TileCentrifuge) tile);
+		}
+		if (tile instanceof TileLiquidFiller) {
+			return new LiquidFillerContainer(player.inventory, (TileLiquidFiller) tile);
 		}
 		if (tile instanceof TileEnergyStorage) {
 			if (((TileEnergyStorage)tile).getStorageType() == TileEnergyStorage.TYPE_BASIC);
@@ -57,6 +61,10 @@ public class FluxGUI implements IGuiHandler {
 		if (tile instanceof TileCentrifuge) {
 			TileCentrifuge tileElectric = (TileCentrifuge) tile;
 			return new CentrifugeContainerGui(tileElectric, new CentrifugeContainer(player.inventory, tileElectric));
+		}
+		if (tile instanceof TileLiquidFiller) {
+			TileLiquidFiller tileElectric = (TileLiquidFiller) tile;
+			return new LiquidFillerContainerGui(tileElectric, new LiquidFillerContainer(player.inventory, tileElectric));
 		}
 		if (tile instanceof TileEnergyStorage) {
 			TileEnergyStorage tileElectric = (TileEnergyStorage) tile;
