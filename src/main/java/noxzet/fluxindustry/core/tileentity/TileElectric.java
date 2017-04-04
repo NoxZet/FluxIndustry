@@ -15,6 +15,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+import noxzet.fluxindustry.api.IFluxIndustryPacketHandler;
 import noxzet.fluxindustry.api.energy.IFluxIndustryAPI;
 import noxzet.fluxindustry.core.block.electric.BlockElectric;
 import noxzet.fluxindustry.core.energy.EnumEnergyHandling;
@@ -23,7 +24,7 @@ import noxzet.fluxindustry.core.energy.FluxEnergyContainer;
 import noxzet.fluxindustry.core.energy.FluxEnergyHolder;
 import noxzet.fluxindustry.core.energy.FluxEnergyProducer;
 
-public class TileElectric extends TileEntityFlux implements ICapabilityProvider, ITickable, IFluxIndustryAPI, cofh.api.energy.IEnergyProvider, cofh.api.energy.IEnergyReceiver {
+public class TileElectric extends TileEntityFlux implements ICapabilityProvider, ITickable, IFluxIndustryAPI, IFluxIndustryPacketHandler, cofh.api.energy.IEnergyProvider, cofh.api.energy.IEnergyReceiver {
 
 	protected FluxEnergyContainer container;
 	protected FluxEnergyHolder containerHolder;
@@ -238,6 +239,15 @@ public class TileElectric extends TileEntityFlux implements ICapabilityProvider,
 		return container;
 	}
 	
+	public int getField(int id)
+	{
+		return 0;
+	}
+	
+	public void setField(int id, int data)
+	{
+	}
+	
 	public void setCapacity(long capacity)
 	{
 		container.setCapacity(capacity);
@@ -377,6 +387,15 @@ public class TileElectric extends TileEntityFlux implements ICapabilityProvider,
 	@Override
 	public int getFluxCriticalTemperature() {
 		return this.fluxCriticalTemperature;
+	}
+	
+	@Override
+	public byte[] fluxPacketGetBytes(int field) {
+		return new byte[0];
+	}
+	
+	@Override
+	public void fluxPacketHandleBytes(int field, byte[] bytes) {
 	}
 	
 }

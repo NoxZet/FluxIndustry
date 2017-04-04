@@ -1,0 +1,41 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cube",
+		"textures": {
+			"particle": "fluxindustry:blocks/block_machine_basic",
+			"down": "fluxindustry:blocks/block_machine_basic",
+			"up": "fluxindustry:blocks/liquid_filler_top",
+			"north": "fluxindustry:blocks/liquid_filler_front",
+			"south": "fluxindustry:blocks/block_machine_basic",
+			"west": "fluxindustry:blocks/block_machine_basic",
+			"east": "fluxindustry:blocks/block_machine_basic"
+		}
+	},
+	"variants": {
+		"facing": {
+			"down": {
+			},
+			"up": {
+			},
+			"north": {
+				"y": 0
+			},
+			"south": {
+				"y": 180
+			},
+			"west": {
+				"y": 270
+			},
+			"east": {
+				"y": 90
+			}
+		},
+		"lit": {
+			"false": {
+			},
+			"true": {
+			}
+		}
+	}
+}

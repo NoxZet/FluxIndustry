@@ -24,18 +24,20 @@ public class FluxFluidRecipes {
 	
 	public static FluxFluidRecipe searchRecipe(FluidStack sourceFluid, ItemStack sourceItem, FluidStack target)
 	{
+		if (target == null)
+			return null;
 		Fluid fluid = target.getFluid();
 		/*for (Entry<Fluid, ArrayList<FluxFluidRecipe>> entry : searchRecipes.entrySet())
 		 *	  if (fluid == entry.getKey())
 		 *	  {
 		 *		  for (FluxFluidRecipe thisRecipe : entry.getValue())
 		 */
-		ArrayList<FluxFluidRecipe> recipeList = searchRecipes.get(sourceFluid.getFluid());
+		ArrayList<FluxFluidRecipe> recipeList = searchRecipes.get(target.getFluid());
 		if (recipeList != null)
 		{
 			for (FluxFluidRecipe thisRecipe : recipeList)
 			{
-				if (sourceItem != null && thisRecipe.getIsSourceItem())
+				if (thisRecipe.getIsSourceItem() && sourceItem != null)
 				{
 					if (target.amount == thisRecipe.getTargetFluid().amount &&
 							ItemStack.areItemsEqual(sourceItem, thisRecipe.getSourceItem()) && 
@@ -44,7 +46,7 @@ public class FluxFluidRecipes {
 						return thisRecipe;
 					}
 				}
-				else if (sourceFluid != null && !thisRecipe.getIsSourceItem())
+				else if (!thisRecipe.getIsSourceItem() && sourceFluid != null)
 				{
 					if (target.amount == thisRecipe.getTargetFluid().amount &&
 							sourceFluid.getFluid() == thisRecipe.getSourceFluid().getFluid() &&

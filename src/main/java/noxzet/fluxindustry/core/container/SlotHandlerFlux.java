@@ -3,9 +3,9 @@ package noxzet.fluxindustry.core.container;
 import net.darkhax.tesla.capability.TeslaCapabilities;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import noxzet.fluxindustry.api.fluid.IFluxIndustryFluidItem;
 import noxzet.fluxindustry.core.tileentity.TileCentrifuge;
 import noxzet.fluxindustry.core.tileentity.TileElectricCrusher;
 import noxzet.fluxindustry.core.tileentity.TileElectricFurnace;
@@ -56,7 +56,7 @@ public class SlotHandlerFlux extends SlotItemHandler {
 				else
 					return false;
 			case FLUIDHANDLER:
-				if (stack.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null))
+				if (stack.getItem() instanceof IFluxIndustryFluidItem)
 					return true;
 				else
 					return false;

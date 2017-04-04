@@ -8,6 +8,7 @@ import noxzet.fluxindustry.core.block.electric.BlockElectricFurnace;
 import noxzet.fluxindustry.core.block.electric.BlockEnergyStorage;
 import noxzet.fluxindustry.core.block.electric.BlockFluxCable;
 import noxzet.fluxindustry.core.block.electric.BlockGeneratorCoal;
+import noxzet.fluxindustry.core.block.electric.BlockLiquidFiller;
 import noxzet.fluxindustry.core.item.FluxCreativeTabs;
 import noxzet.fluxindustry.core.item.ItemBlockMulti;
 
@@ -23,6 +24,7 @@ public class FluxBlocks {
     public static final BlockElectricCrusher electricCrusher;
     public static final BlockCentrifuge centrifuge;
     public static final BlockEnergyStorage energyStorageBasic;
+    public static final BlockLiquidFiller liquidFiller;
 
     static {
         oreBasic = register(new BlockOreBasic("ore_basic"));
@@ -34,6 +36,7 @@ public class FluxBlocks {
         electricFurnace = register(new BlockElectricFurnace("electric_furnace"));
         electricCrusher = register(new BlockElectricCrusher("electric_crusher"));
         centrifuge = register(new BlockCentrifuge("centrifuge"));
+        liquidFiller = register(new BlockLiquidFiller("liquid_filler"));
         energyStorageBasic = register(new BlockEnergyStorage("energy_storage_basic"));
     }
 
@@ -51,6 +54,7 @@ public class FluxBlocks {
         electricFurnace.setCreativeTab(FluxCreativeTabs.FIMACHINES);
         electricCrusher.setCreativeTab(FluxCreativeTabs.FIMACHINES);
         centrifuge.setCreativeTab(FluxCreativeTabs.FIMACHINES);
+        liquidFiller.setCreativeTab(FluxCreativeTabs.FIMACHINES);
         energyStorageBasic.setCreativeTab(FluxCreativeTabs.FIMACHINES);
     }
 

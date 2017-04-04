@@ -19,6 +19,7 @@ import noxzet.fluxindustry.core.FluxIndustry;
 public class TileElectricInventory extends TileElectric {
 
 	protected ItemStackHandler inventory;
+	public boolean isOpen = false;
 	
 	public TileElectricInventory()
 	{
@@ -41,15 +42,6 @@ public class TileElectricInventory extends TileElectric {
 	public ItemStackHandler getStackHandler()
 	{
 		return inventory;
-	}
-	
-	public int getField(int id)
-	{
-		return 0;
-	}
-	
-	public void setField(int id, int data)
-	{
 	}
 	
 	@Override

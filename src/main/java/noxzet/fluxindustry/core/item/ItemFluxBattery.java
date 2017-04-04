@@ -25,12 +25,14 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
     public String[] name;
     public boolean[] chargeable;
 
-    private ItemFluxBattery(String unlocalizedName) {
+    private ItemFluxBattery(String unlocalizedName)
+    {
         super(unlocalizedName);
         this.setHasSubtypes(true);
     }
 
-    public ItemFluxBattery(String unlocalizedName, String group, int[] capacity, short[] capacityGrade, String[] name, boolean[] chargeable) {
+    public ItemFluxBattery(String unlocalizedName, String group, int[] capacity, short[] capacityGrade, String[] name, boolean[] chargeable)
+    {
         this(unlocalizedName);
         this.group = group;
         this.capacity = capacity;
@@ -39,7 +41,8 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
         this.chargeable = chargeable;
     }
 
-    public static ItemFluxBattery itemFluxBatteryBasic(String unlocalizedName, String group) {
+    public static ItemFluxBattery itemFluxBatteryBasic(String unlocalizedName, String group)
+    {
         return new ItemFluxBattery(unlocalizedName, group,
                 new int[]{20000, 70000, 240000, 600000, 2000000},
                 new short[]{1, 1, 1, 1, 2},
@@ -48,7 +51,8 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
     }
 
     @Override
-    public void registerItemModel() {
+    public void registerItemModel()
+    {
         int i, len = this.capacity.length;
         for (i = 0; i < len; i++) {
             FluxIndustry.proxy.registerItemRenderer(this, i, "variant=" + this.name[i]);
@@ -56,7 +60,8 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
+    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems)
+    {
         ItemStack currentStack;
         int i, len = this.capacity.length;
         for (i = 0; i < len; i++) {
@@ -66,14 +71,16 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
         }
     }
 
-    public int getMetaWithBounds(ItemStack stack) {
+    public int getMetaWithBounds(ItemStack stack)
+    {
         if (stack.getMetadata() < 0 || stack.getMetadata() >= capacity.length)
             return 0;
         return stack.getMetadata();
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack) {
+    public String getUnlocalizedName(ItemStack stack)
+    {
         int meta = stack.getMetadata();
         if (meta < 0 || meta >= capacity.length)
             meta = 0;
@@ -82,7 +89,8 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemstack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+    public void addInformation(ItemStack itemstack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    {
         int meta = itemstack.getMetadata();
         if (meta < 0 || meta >= capacity.length)
             meta = 0;
@@ -92,21 +100,12 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
         if (!itemstack.getTagCompound().hasKey("Tesla", NBT.TAG_LONG))
             itemstack.getTagCompound().setLong("Tesla", 0);
         // Tooltip itself
-        if (capacityGrade[meta] < 1)
-            tooltip.add(itemstack.getTagCompound().getLong("Tesla") + "/" + capacity[meta] + FluxIndustry.unit);
-        else {
-            int floatPlacesAmount = 1;
-            double divider = Math.pow(1000, capacityGrade[meta]);
-            double shownAmount = itemstack.getTagCompound().getLong("Tesla") / divider;
-            double shownCapacity = capacity[meta] / divider;
-            if (shownCapacity < 10)
-                floatPlacesAmount = 2;
-            tooltip.add(String.format("%." + floatPlacesAmount + "f/%." + floatPlacesAmount + "f " + FluxUtils.getEnergyGrade(capacityGrade[meta]) + FluxIndustry.unit, shownAmount, shownCapacity));
-        }
+        tooltip.add(FluxUtils.getEnergyString((int) itemstack.getTagCompound().getLong("Tesla"), capacity[meta], capacityGrade[meta]));
     }
 
     @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
+    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt)
+    {
         if (stack != null && stack.getItem() == this) {
             int meta = stack.getMetadata();
             if (meta < 0 || meta >= capacity.length)
@@ -125,7 +124,8 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
     // CoFH API
 
     @Override
-    public int receiveEnergy(ItemStack stack, int Tesla, boolean simulated) {
+    public int receiveEnergy(ItemStack stack, int Tesla, boolean simulated)
+    {
         if (stack.getCount() == 1) {
             int meta = this.getMetaWithBounds(stack);
             if (this.chargeable[meta]) {
@@ -140,7 +140,8 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
     }
 
     @Override
-    public int extractEnergy(ItemStack stack, int Tesla, boolean simulated) {
+    public int extractEnergy(ItemStack stack, int Tesla, boolean simulated)
+    {
         if (stack.getCount() == 1) {
             int meta = this.getMetaWithBounds(stack);
             long stored = stack.getTagCompound().getLong("Tesla");
@@ -153,12 +154,14 @@ public class ItemFluxBattery extends ItemFlux implements IEnergyContainerItem {
     }
 
     @Override
-    public int getEnergyStored(ItemStack stack) {
+    public int getEnergyStored(ItemStack stack)
+    {
         return (int) stack.getTagCompound().getLong("Tesla");
     }
 
     @Override
-    public int getMaxEnergyStored(ItemStack stack) {
+    public int getMaxEnergyStored(ItemStack stack)
+    {
         return (int) this.capacity[this.getMetaWithBounds(stack)];
     }
 

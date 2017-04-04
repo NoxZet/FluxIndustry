@@ -1,12 +1,5 @@
 package noxzet.fluxindustry.core.world;
 
-import static noxzet.fluxindustry.core.config.FluxConfig.DO_ORE_GEN_ALUMINUM;
-import static noxzet.fluxindustry.core.config.FluxConfig.DO_ORE_GEN_COPPER;
-import static noxzet.fluxindustry.core.config.FluxConfig.DO_ORE_GEN_LEAD;
-import static noxzet.fluxindustry.core.config.FluxConfig.DO_ORE_GEN_TIN;
-import static noxzet.fluxindustry.core.config.FluxConfig.DO_ORE_GEN_URANIUM;
-import static noxzet.fluxindustry.core.config.FluxConfig.DO_ORE_GEN_ZINC;
-
 import java.util.Random;
 
 import net.minecraft.block.state.IBlockState;
@@ -32,17 +25,17 @@ public class FluxGenOverworld implements IWorldGenerator {
     }
 
     private void generateOverworld(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        if (DO_ORE_GEN_COPPER)
+        if (FluxConfig.DO_ORE_GEN_COPPER)
             generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.COPPER), world, random, chunkX * 16, chunkZ * 16, 5, 96, 10, 16);
-        if (DO_ORE_GEN_TIN)
+        if (FluxConfig.DO_ORE_GEN_TIN)
             generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.TIN), world, random, chunkX * 16, chunkZ * 16, 5, 96, 7, 15);
-        if (DO_ORE_GEN_ZINC)
+        if (FluxConfig.DO_ORE_GEN_ZINC)
             generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.ZINC), world, random, chunkX * 16, chunkZ * 16, 5, 60, 11, 9);
-        if (DO_ORE_GEN_ALUMINUM)
+        if (FluxConfig.DO_ORE_GEN_ALUMINUM)
             generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.ALUMINUM), world, random, chunkX * 16, chunkZ * 16, 5, 75, 8, 10);
-        if (DO_ORE_GEN_LEAD)
+        if (FluxConfig.DO_ORE_GEN_LEAD)
             generateOre(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.LEAD), world, random, chunkX * 16, chunkZ * 16, 20, 64, 6, 6);
-        if (DO_ORE_GEN_URANIUM)
+        if (FluxConfig.DO_ORE_GEN_URANIUM)
             generateOreCustom(FluxBlocks.oreBasic.getDefaultState().withProperty(BlockOreBasic.VARIANT, BlockOreBasic.URANIUM), world, random, chunkX * 16, chunkZ * 16, 5, 37, 2, 3);
     }
 
