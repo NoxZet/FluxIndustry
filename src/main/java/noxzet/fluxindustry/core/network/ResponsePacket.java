@@ -55,6 +55,7 @@ public class ResponsePacket implements IMessage {
 		buf.writeBytes(FluxUtils.intToByteArray(z));
 		buf.writeBytes(FluxUtils.intToByteArray(this.field));
 		buf.writeBytes(this.bytes);
+		System.out.println("response");
 	}
 	
 	public int getUid()

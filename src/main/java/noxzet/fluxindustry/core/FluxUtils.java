@@ -79,7 +79,7 @@ public class FluxUtils {
 	
 	public static int byteArrayToInt(byte[] bytes)
 	{
-		return (int) ((bytes[0]<<24)&0xFF000000) + ((bytes[1]<<16)&0x00FF0000) + ((bytes[2]<<8)&0x0000FF00) + ((bytes[1])&0x000000FF);
+		return (int) ((bytes[0]<<24)&0xFF000000) + ((bytes[1]<<16)&0x00FF0000) + ((bytes[2]<<8)&0x0000FF00) + ((bytes[3])&0x000000FF);
 	}
 	
 	public static byte[] intToByteArray(int integer)

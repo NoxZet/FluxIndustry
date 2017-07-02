@@ -20,6 +20,11 @@ public class RequestPacket implements IMessage {
 		this.field = field;
 	}
 	
+	public RequestPacket(BlockPos pos, int field)
+	{
+		this(FluxNetworkWrapper.randomUid(), pos, field);
+	}
+	
 	@Override
 	public void fromBytes(ByteBuf buf)
 	{

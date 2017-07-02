@@ -77,8 +77,7 @@ public class TileLiquidFiller extends TileElectricFluid {
 		}
 		else if (isOpen)
 		{
-			FluxNetworkWrapper.INSTANCE.sendToServer(new RequestPacket(
-					FluxNetworkWrapper.random.nextInt(), pos, 0));
+			FluxNetworkWrapper.INSTANCE.sendToServer(new RequestPacket(pos, 0));
 		}
 	}
 	
