@@ -18,6 +18,7 @@ import noxzet.fluxindustry.core.container.FluxGUI;
 import noxzet.fluxindustry.core.crafting.FluxCrafting;
 import noxzet.fluxindustry.core.item.FluxCreativeTabs;
 import noxzet.fluxindustry.core.item.FluxItems;
+import noxzet.fluxindustry.core.network.FluxNetworkWrapper;
 import noxzet.fluxindustry.core.proxy.CommonProxy;
 import noxzet.fluxindustry.core.world.FluxGenOverworld;
 
@@ -26,7 +27,7 @@ public class FluxIndustry
 {
     public static final String MODID = "fluxindustry";
     public static final String VERSION = "0.0.1";
-	@SidedProxy(clientSide="noxzet.fluxindustry.core.proxy.ClientProxy", serverSide="noxzet.fluxindustry.core.proxy.ServerProxy")
+	@SidedProxy(clientSide="noxzet.fluxindustry.core.proxy.ClientProxy", serverSide="noxzet.fluxindustry.core.proxy.CommonProxy")
 	public static CommonProxy proxy;
 	public static FluxIndustry INSTANCE;
 	public static String unit;
@@ -43,6 +44,7 @@ public class FluxIndustry
         FluxCreativeTabs.init();
         FluxItems.init();
         FluxBlocks.init();
+        FluxNetworkWrapper.registerPackets();
     	GameRegistry.registerWorldGenerator(new FluxGenOverworld(), 3);
     }
     
