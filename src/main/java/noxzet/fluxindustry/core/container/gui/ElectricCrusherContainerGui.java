@@ -1,7 +1,8 @@
-package noxzet.fluxindustry.core.container;
+package noxzet.fluxindustry.core.container.gui;
 
 import net.minecraft.util.ResourceLocation;
 import noxzet.fluxindustry.core.FluxIndustry;
+import noxzet.fluxindustry.core.container.ElectricCrusherContainer;
 import noxzet.fluxindustry.core.tileentity.TileElectricCrusher;
 
 public class ElectricCrusherContainerGui extends FluxContainerGui {

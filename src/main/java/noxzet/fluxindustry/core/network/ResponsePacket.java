@@ -1,8 +1,12 @@
 package noxzet.fluxindustry.core.network;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noxzet.fluxindustry.api.IFluxIndustryPacketHandler;
 import noxzet.fluxindustry.core.FluxUtils;
 
 public class ResponsePacket implements IMessage {
@@ -55,7 +59,6 @@ public class ResponsePacket implements IMessage {
 		buf.writeBytes(FluxUtils.intToByteArray(z));
 		buf.writeBytes(FluxUtils.intToByteArray(this.field));
 		buf.writeBytes(this.bytes);
-		System.out.println("response");
 	}
 	
 	public int getUid()
@@ -76,6 +79,16 @@ public class ResponsePacket implements IMessage {
 	public byte[] getBytes()
 	{
 		return bytes;
+	}
+	
+	public IMessage process(MessageContext ctx)
+	{
+		TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(getPos());
+		if (tile != null && tile instanceof IFluxIndustryPacketHandler)
+		{
+			((IFluxIndustryPacketHandler) tile).fluxPacketHandleBytes(getField(), getBytes());
+		}
+		return null;
 	}
 	
 }

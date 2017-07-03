@@ -22,6 +22,16 @@ public class FluxFluidRecipes {
 		return INSTANCE;
 	}
 	
+	public static FluxFluidRecipe searchRecipe(FluidStack sourceFluid, FluidStack target)
+	{
+		return searchRecipe(sourceFluid, null, target);
+	}
+	
+	public static FluxFluidRecipe searchRecipe(ItemStack sourceItem, FluidStack target)
+	{
+		return searchRecipe(null, sourceItem, target);
+	}
+	
 	public static FluxFluidRecipe searchRecipe(FluidStack sourceFluid, ItemStack sourceItem, FluidStack target)
 	{
 		if (target == null)
@@ -37,26 +47,34 @@ public class FluxFluidRecipes {
 		{
 			for (FluxFluidRecipe thisRecipe : recipeList)
 			{
-				if (thisRecipe.getIsSourceItem() && sourceItem != null)
+				FluidStack recipeTarget = thisRecipe.getTargetFluid();
+				if (target.amount >= recipeTarget.amount && (recipeTarget.amount % target.amount) == 0)
 				{
-					if (target.amount == thisRecipe.getTargetFluid().amount &&
-							ItemStack.areItemsEqual(sourceItem, thisRecipe.getSourceItem()) && 
-							sourceItem.getCount() >= thisRecipe.getSourceItem().getCount())
+					int multiplier = (recipeTarget.amount / target.amount);
+					if (thisRecipe.getIsSourceItem() && sourceItem != null)
 					{
-						return thisRecipe;
+						ItemStack recipeSourceItem = thisRecipe.getSourceItem();
+						if (ItemStack.areItemsEqual(sourceItem, recipeSourceItem))
+						{
+							int itemCount = multiplier * recipeSourceItem.getCount();
+							if (sourceItem.getCount() >= itemCount && sourceItem.getMaxStackSize() >= itemCount) {
+								return thisRecipe;
+							}
+						}
 					}
-				}
-				else if (!thisRecipe.getIsSourceItem() && sourceFluid != null)
-				{
-					if (target.amount == thisRecipe.getTargetFluid().amount &&
-							sourceFluid.getFluid() == thisRecipe.getSourceFluid().getFluid() &&
-							sourceFluid.amount >= thisRecipe.getSourceFluid().amount)
+					else if (!thisRecipe.getIsSourceItem() && sourceFluid != null)
 					{
-						return thisRecipe;
+						FluidStack recipeSourceFluid = thisRecipe.getSourceFluid();
+						if (sourceFluid.isFluidEqual(recipeSourceFluid))
+						{
+							int fluidAmount = multiplier * recipeSourceFluid.amount;
+							if (sourceFluid.amount >= fluidAmount) {
+								return thisRecipe;
+							}
+						}
 					}
 				}
 			}
-			//}
 		}
 		return null;
 	}

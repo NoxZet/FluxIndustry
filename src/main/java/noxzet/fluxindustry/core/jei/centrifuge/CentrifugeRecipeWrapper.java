@@ -7,7 +7,7 @@ import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IDrawableStatic;
 import net.minecraft.client.Minecraft;
-import noxzet.fluxindustry.core.container.CentrifugeContainerGui;
+import noxzet.fluxindustry.core.container.gui.CentrifugeContainerGui;
 import noxzet.fluxindustry.core.jei.FluxRecipeWrapper;
 
 public class CentrifugeRecipeWrapper extends FluxRecipeWrapper<CentrifugeRecipe> {

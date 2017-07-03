@@ -1,7 +1,8 @@
-package noxzet.fluxindustry.core.container;
+package noxzet.fluxindustry.core.container.gui;
 
 import net.minecraft.util.ResourceLocation;
 import noxzet.fluxindustry.core.FluxIndustry;
+import noxzet.fluxindustry.core.container.ElectricFurnaceContainer;
 import noxzet.fluxindustry.core.tileentity.TileElectricFurnace;
 
 public class ElectricFurnaceContainerGui extends FluxContainerGui {

@@ -10,7 +10,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
-import noxzet.fluxindustry.core.container.CentrifugeContainerGui;
+import noxzet.fluxindustry.core.container.gui.CentrifugeContainerGui;
 import noxzet.fluxindustry.core.jei.FluxCategoryUids;
 
 public class CentrifugeRecipeCategory extends BlankRecipeCategory<CentrifugeRecipeWrapper> {

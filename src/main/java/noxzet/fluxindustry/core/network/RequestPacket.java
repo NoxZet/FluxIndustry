@@ -1,8 +1,12 @@
 package noxzet.fluxindustry.core.network;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noxzet.fluxindustry.api.IFluxIndustryPacketHandler;
 import noxzet.fluxindustry.core.FluxUtils;
 
 public class RequestPacket implements IMessage {
@@ -70,6 +74,21 @@ public class RequestPacket implements IMessage {
 	public int getField()
 	{
 		return field;
+	}
+	
+	public IMessage process(MessageContext ctx)
+	{
+		EntityPlayerMP player = ctx.getServerHandler().player;
+		TileEntity tile = player.world.getTileEntity(getPos());
+		if (tile != null && tile instanceof IFluxIndustryPacketHandler)
+		{
+			ResponsePacket response = new ResponsePacket(
+					getUid(), getPos(), getField(),
+					((IFluxIndustryPacketHandler) tile).fluxPacketGetBytes(getField()));
+			return response;
+			//FluxNetworkWrapper.INSTANCE.sendTo(response, player);
+		}
+		return null;
 	}
 	
 }

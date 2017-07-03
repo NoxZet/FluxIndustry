@@ -17,25 +17,4 @@ public class CommonProxy {
 	public void prepareColorHandler(Item item) {}
 	public void registerColorHandlers() {}
 	
-	public void onPacket(IMessage message, MessageContext ctx)
-	{
-		System.out.println("CommonProxy received message");
-		EntityPlayerMP player = ctx.getServerHandler().player;
-		if (message instanceof RequestPacket)
-		{
-			System.out.println("CommonProxy got request");
-			RequestPacket packet = (RequestPacket) message;
-			TileEntity tile = player.world.getTileEntity(packet.getPos());
-			if (tile != null && tile instanceof IFluxIndustryPacketHandler)
-			{
-				System.out.println("It matches existing TileEntity");
-				ResponsePacket response = new ResponsePacket(
-						packet.getUid(), packet.getPos(), packet.getField(),
-						((IFluxIndustryPacketHandler) tile).fluxPacketGetBytes(packet.getField()));
-				FluxNetworkWrapper.INSTANCE.sendTo(response, player);
-				System.out.println("Sending response to " + player.getName());
-			}
-		}
-	}
-	
 }

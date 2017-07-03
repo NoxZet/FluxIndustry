@@ -16,20 +16,16 @@ public class FluxNetworkWrapper {
 	
 	public static void registerPackets()
 	{
-		INSTANCE.registerMessage(PacketHandler.class, (Class) RequestPacket.class, packetId, Side.SERVER);
-		packetId+=1;
-		INSTANCE.registerMessage(PacketHandler.class, (Class) ResponsePacket.class, packetId, Side.CLIENT);
-		packetId+=1;
-		/*registerPacket(RequestPacket.class);
-		registerPacket(ResponsePacket.class);*/
+		registerPacket(RequestPacket.class);
+		registerPacket(ResponsePacket.class);
 	}
 	
-	/*public static void registerPacket(Class <? extends IMessage> packet)
+	public static void registerPacket(Class <? extends IMessage> packet)
 	{
 		INSTANCE.registerMessage(PacketHandler.class, (Class) packet, packetId, Side.SERVER);
 		INSTANCE.registerMessage(PacketHandler.class, (Class) packet, packetId, Side.CLIENT);
 		packetId+=1;
-	}*/
+	}
 	
 	public static int randomUid()
 	{

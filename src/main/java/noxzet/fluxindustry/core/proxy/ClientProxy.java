@@ -51,22 +51,5 @@ public class ClientProxy extends CommonProxy {
 					item);
 		}
 	}
-
-	@Override
-	public void onPacket(IMessage message, MessageContext ctx)
-	{
-		System.out.println("ClientProxy received message");
-		if (message instanceof ResponsePacket)
-		{
-			System.out.println("ClientProxy got response");
-			ResponsePacket packet = (ResponsePacket) message;
-			TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(packet.getPos());
-			if (tile != null && tile instanceof IFluxIndustryPacketHandler)
-			{
-				System.out.println("It matches existing TileEntity. Applying data.");
-				((IFluxIndustryPacketHandler) tile).fluxPacketHandleBytes(packet.getField(), packet.getBytes());
-			}
-		}
-	}
 	
 }
