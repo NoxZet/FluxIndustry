@@ -71,8 +71,8 @@ public class FluxUtils {
 		for (int i = 0; i < chars.length; i++)
 		{
 			int pos = i << 1;
-			bytes[pos] = (byte) ((bytes[i]&0xFF00)>>8);
-			bytes[pos+1] = (byte) ((bytes[i]&0x00FF));
+			bytes[pos] = (byte) ((chars[i]&0xFF00)>>8);
+			bytes[pos+1] = (byte) ((chars[i]&0x00FF));
 		}
 		return bytes;
 	}

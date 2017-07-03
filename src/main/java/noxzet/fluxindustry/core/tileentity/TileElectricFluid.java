@@ -2,7 +2,11 @@ package noxzet.fluxindustry.core.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import noxzet.fluxindustry.core.FluxUtils;
 import noxzet.fluxindustry.core.fluid.FluxFluidContainer;
@@ -18,7 +22,8 @@ public class TileElectricFluid extends TileElectricInventory {
 	public int fluidColor = 0;
 	public int fluidCapacity = 0;
 	public int fluidAmount = 0;
-	public String fluidUnlocalizedName = "";
+	public String fluidName = "";
+	public String fluidLocalizedName = "";
 	
 	public TileElectricFluid()
 	{
@@ -104,7 +109,11 @@ public class TileElectricFluid extends TileElectricInventory {
 	{
 		switch (field)
 		{
-			case 0: return FluxUtils.stringToByteArray(this.fluidContainer.stack.getFluid().getUnlocalizedName());
+			case 0:
+				if (this.fluidContainer.stack == null || this.fluidContainer.stack.amount <= 0)
+					return new byte[]{};
+				else
+					return FluxUtils.stringToByteArray(this.fluidContainer.stack.getFluid().getName());
 			default: return new byte[0];
 		}
 	}
@@ -114,7 +123,18 @@ public class TileElectricFluid extends TileElectricInventory {
 	{
 		switch (field)
 		{
-			case 0: this.fluidUnlocalizedName = FluxUtils.byteArrayToString(bytes); break;
+			case 0:
+				String converted = FluxUtils.byteArrayToString(bytes);
+				if (converted != this.fluidName) {
+					this.fluidName = converted;
+					if (converted == "")
+						this.fluidLocalizedName = I18n.translateToLocal("gui.none");
+					else {
+						FluidStack fluidstack = FluidRegistry.getFluidStack(converted, this.fluidAmount);
+						this.fluidLocalizedName = fluidstack != null ? fluidstack.getLocalizedName() : converted;
+					}
+				}
+			break;
 		}
 	}
 

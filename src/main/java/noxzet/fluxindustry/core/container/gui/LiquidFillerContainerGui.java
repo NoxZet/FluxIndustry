@@ -1,7 +1,11 @@
-package noxzet.fluxindustry.core.container;
+package noxzet.fluxindustry.core.container.gui;
 
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import noxzet.fluxindustry.core.FluxIndustry;
+import noxzet.fluxindustry.core.container.LiquidFillerContainer;
 import noxzet.fluxindustry.core.tileentity.TileLiquidFiller;
 
 public class LiquidFillerContainerGui extends FluxContainerGui {
@@ -61,7 +65,9 @@ public class LiquidFillerContainerGui extends FluxContainerGui {
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		if (mouseX >= guiLeft+80 && mouseY >= guiTop+19 && mouseX < guiLeft+95 && mouseY < guiTop+66)
-			this.drawFluid(mouseX, mouseY, tile.fluidAmount, tile.fluidCapacity, tile.fluidUnlocalizedName);
+		{
+			this.drawFluid(mouseX, mouseY, tile.fluidAmount, tile.fluidCapacity, tile.fluidLocalizedName);
+		}
 	}
 	
 }

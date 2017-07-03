@@ -7,6 +7,7 @@ tile.fluxindustry.generator_coal.name=Coal Generator
 tile.fluxindustry.electric_furnace.name=Electric Furnace
 tile.fluxindustry.electric_crusher.name=Crusher
 tile.fluxindustry.centrifuge.name=Centrifuge
+tile.fluxindustry.liquid_filler.name=Liquid Filler
 
 tile.fluxindustry.energy_storage_basic.name=Basic Energy Storage
 

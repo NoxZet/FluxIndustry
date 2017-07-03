@@ -1,4 +1,4 @@
-package noxzet.fluxindustry.core.container;
+package noxzet.fluxindustry.core.container.gui;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import noxzet.fluxindustry.core.FluxIndustry;
 import noxzet.fluxindustry.core.FluxUtils;
+import noxzet.fluxindustry.core.container.FluxContainer;
 import noxzet.fluxindustry.core.tileentity.TileElectricInventory;
 
 public class FluxContainerGui extends GuiContainer {
@@ -42,8 +43,13 @@ public class FluxContainerGui extends GuiContainer {
 	public void drawFluid(int x, int y, int amount, int capacity, String name)
 	{
 		ArrayList<String> lines = new ArrayList<>();
-		lines.add(I18n.translateToLocal(name));
-		lines.add(amount + "/" + capacity + " mB");
+		if (amount == 0) {
+			lines.add(I18n.translateToLocal("gui.none"));
+		}
+		else {
+			lines.add(name);
+			lines.add(amount + "/" + capacity + " mB");
+		}
 		drawHoveringText(lines, x-guiLeft-4, y-guiTop);
 	}
 	

@@ -47,30 +47,35 @@ public class TileLiquidFiller extends TileElectricFluid {
 					{
 						inventory.setStackInSlot(0, leftStack);
 					}
-					/*else
+					else
 					{
-						IFluidTankProperties[] properties = fluid.getTankProperties();
-						if (properties.length > 0 && properties[0] != null && properties[0].canDrain() && properties[0].getContents() != null)
+						FluxFluidRecipe recipe = FluxFluidRecipes.searchRecipe(fluidItem.fluxFluidDrain(leftStack, fluidItem.fluxFluidCapacity(leftStack), true), fluidContainer.stack);
+						FluidStack recipeTarget = recipe.getTargetFluid();
+						FluidStack recipeSource = recipe.getSourceFluid();
+						FluidStack recipeOutput = recipe.getOutputFluid();
+						int multiplier = recipeTarget.amount / fluidContainer.stack.amount;
+						if (fluidContainer.getCapacity() >= recipeOutput.amount * multiplier)
 						{
-							FluxFluidRecipe recipe = FluxFluidRecipes.searchRecipe(properties[0].getContents(), null, fluidContainer.stack);
-							if (recipe != null && fluid.drain(recipe.getSourceFluid(), false).amount == recipe.getSourceFluid().amount)
-							{
-								fluid.drain(recipe.getSourceFluid(), true);
-								inventory.setStackInSlot(0, leftStack);
-							}
+							fluidItem.fluxFluidDrain(leftStack, recipeSource.amount * multiplier, false);
+							inventory.setStackInSlot(0, leftStack);
+							fluidContainer.stack = recipeOutput.copy();
+							fluidContainer.stack.amount *= multiplier;
 						}
-					}*/
+					}
 				}
 				else
 				{
-					FluxFluidRecipe recipe = FluxFluidRecipes.searchRecipe(null, leftStack, fluidContainer.stack);
-					if (recipe != null)
+					FluxFluidRecipe recipe = FluxFluidRecipes.searchRecipe(leftStack, fluidContainer.stack);
+					FluidStack recipeTarget = recipe.getTargetFluid();
+					ItemStack recipeSource = recipe.getSourceItem();
+					FluidStack recipeOutput = recipe.getOutputFluid();
+					int multiplier = recipeTarget.amount / fluidContainer.stack.amount;
+					if (fluidContainer.getCapacity() >= recipeOutput.amount * multiplier)
 					{
-						leftStack.shrink(recipe.getSourceItem().getCount());
-						if (leftStack.getCount() > 0)
-							inventory.setStackInSlot(0, leftStack);
-						else
-							inventory.setStackInSlot(0, ItemStack.EMPTY);
+						leftStack.shrink(recipeSource.getCount() * multiplier);
+						inventory.setStackInSlot(0, leftStack);
+						fluidContainer.stack = recipeOutput.copy();
+						fluidContainer.stack.amount *= multiplier;
 					}
 				}
 			}

@@ -99,16 +99,6 @@ public class ItemFluidContainer extends ItemFlux implements IFluxIndustryFluidIt
 		}
 		return 0xFFFFFF;
 	}
-	
-	/*@Override
-	public ICapabilityProvider initCapabilities (ItemStack stack, NBTTagCompound nbt)
-	{
-		if (stack != null && stack.getItem() == this && stack.hasTagCompound())
-		{
-			return new FluxItemFluidContainer(stack, capacity, new ItemStack(this, 1, 0));
-		}
-		return null;
-	}*/
 
 	private FluidStack loadFromItem(ItemStack itemstack)
 	{
@@ -184,6 +174,12 @@ public class ItemFluidContainer extends ItemFlux implements IFluxIndustryFluidIt
 			return fluxFluidDrain(itemstack, fluidstack, fluid, simulate);
 		}
 		return null;
+	}
+	
+	@Override
+	public int fluxFluidCapacity(ItemStack itemstack)
+	{
+		return this.capacity;
 	}
 	
 }

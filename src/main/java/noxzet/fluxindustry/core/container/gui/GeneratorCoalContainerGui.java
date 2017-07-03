@@ -1,7 +1,8 @@
-package noxzet.fluxindustry.core.container;
+package noxzet.fluxindustry.core.container.gui;
 
 import net.minecraft.util.ResourceLocation;
 import noxzet.fluxindustry.core.FluxIndustry;
+import noxzet.fluxindustry.core.container.GeneratorCoalContainer;
 import noxzet.fluxindustry.core.tileentity.TileGeneratorCoal;
 
 public class GeneratorCoalContainerGui extends FluxContainerGui {
